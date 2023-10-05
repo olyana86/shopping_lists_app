@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".presentation.activity.MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_user_lists_main_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_new_list_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/all_user_lists_main_recyclerview"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Новый список"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_input_add" />
+
+    <LinearLayout
+        android:id="@+id/btn_priority_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/add_new_list_fab">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/first_priority_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Очень надо"
+            app:cornerRadius="50dp"
+            android:textStyle="bold"
+            android:backgroundTint="#F44336"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/second_priority_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Надо"
+            app:cornerRadius="50dp"
+            android:textStyle="bold"
+            android:backgroundTint="#EEB404"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/third_priority_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cornerRadius="50dp"
+        android:text="Пока подождет"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_priority_group"
+        android:backgroundTint="#4CAF50"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_categories_main_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/third_priority_btn"
+        android:layout_above="@id/all_categories_btn"
+        android:paddingVertical="8dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/all_categories_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Все категории"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="8dp"
+        android:layout_above="@id/all_places_to_buy_btn"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/all_places_to_buy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Покупки по адресам"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#409342"/>
+</RelativeLayout>

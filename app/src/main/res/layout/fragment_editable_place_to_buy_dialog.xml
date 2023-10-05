@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.EditablePlaceToBuyDialogFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/dialog_place_title_input_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:hint="Место покупки"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/dialog_place_address_input_textview"
+            android:layout_below="@id/dialog_place_title_input_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Адрес места"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/dialog_place_cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Отмена"
+            android:layout_below="@id/dialog_place_address_input_textview"
+            android:layout_toStartOf="@id/dialog_place_save_btn"/>
+
+        <Button
+            android:id="@+id/dialog_place_save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/dialog_place_address_input_textview"
+            android:layout_alignParentEnd="true"  />
+    </RelativeLayout>
+</FrameLayout>

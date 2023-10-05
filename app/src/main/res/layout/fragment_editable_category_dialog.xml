@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.EditableCategoryDialogFragment">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <EditText
+        android:id="@+id/dialog_category_title_input_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="Название категории"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/dialog_category_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отмена"
+        android:layout_below="@id/dialog_category_title_input_textview"
+        android:layout_toStartOf="@id/dialog_category_save_btn"/>
+
+    <Button
+        android:id="@+id/dialog_category_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сохранить"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/dialog_category_title_input_textview"
+        android:layout_alignParentEnd="true"  />
+</RelativeLayout>
+
+</FrameLayout>
