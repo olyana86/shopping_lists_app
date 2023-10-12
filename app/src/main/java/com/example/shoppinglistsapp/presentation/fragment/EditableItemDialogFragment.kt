@@ -1,28 +1,34 @@
 package com.example.shoppinglistsapp.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDialog
 import androidx.fragment.app.DialogFragment
-import com.example.shoppinglistsapp.R
+import com.example.shoppinglistsapp.databinding.FragmentEditableItemDialogBinding
 
 class EditableItemDialogFragment : DialogFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
+    private var _binding: FragmentEditableItemDialogBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEditableItemDialogBinding.inflate(inflater,
+            container, false)
+
+        binding.itemDialogCancelBtn.setOnClickListener{
+            dismiss()
+        }
+
+        return binding.root
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_editable_item_dialog, container, false)
-//    }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
