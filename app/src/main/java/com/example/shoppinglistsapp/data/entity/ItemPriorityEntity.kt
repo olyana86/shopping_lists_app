@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class ItemPriorityEntity(
 
     @PrimaryKey
-    var priority_id: Long,
+    var priority_id: Long? = null,
 
     @ColumnInfo(name = "priority_name")
     var priorityName: String

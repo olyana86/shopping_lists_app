@@ -7,15 +7,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "item_category")
 data class ItemCategoryEntity(
 
-    @PrimaryKey
-    var category_id: Long,
+    @PrimaryKey(autoGenerate = true)
+    var category_id: Long? = null,
 
     @ColumnInfo(name = "category_name")
     var categoryName: String,
 
     @ColumnInfo(name = "is_editable")
-    var categoryIsEditable: Boolean,
+    var categoryIsEditable: Boolean = true,
 
     @ColumnInfo(name = "is_deletable")
-    var categoryIsDeletable: Boolean
+    var categoryIsDeletable: Boolean = true
+
 )

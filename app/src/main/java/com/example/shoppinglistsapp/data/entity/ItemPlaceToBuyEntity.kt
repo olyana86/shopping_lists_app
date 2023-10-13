@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class ItemPlaceToBuyEntity(
 
     @PrimaryKey(autoGenerate = true)
-    var place_to_buy_id: Long,
+    var place_to_buy_id: Long? = null,
 
     @ColumnInfo(name = "place_to_buy_name")
     var placeToBuyName: String,

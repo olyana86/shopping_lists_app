@@ -8,9 +8,6 @@ interface ItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItem(item: ItemEntity)
 
-    @Insert
-    fun insertAllItems(items: List<ItemEntity>)
-
     @Update
     fun updateItem(item: ItemEntity)
 
@@ -19,4 +16,7 @@ interface ItemDao {
 
     @Query("SELECT * FROM item")
     fun getAllItems(): List<ItemEntity>
+
+    @Query ("SELECT * FROM item WHERE item_id = :itemId LIMIT 1")
+    fun getItemById(itemId: Long): ItemEntity
 }

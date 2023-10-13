@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class ListEntity(
 
     @PrimaryKey(autoGenerate = true)
-    var list_id: Long,
+    var list_id: Long? = null,
 
     @ColumnInfo(name = "list_name")
     var listName: String
