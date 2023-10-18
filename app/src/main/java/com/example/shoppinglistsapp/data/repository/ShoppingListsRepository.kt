@@ -1,12 +1,27 @@
 package com.example.shoppinglistsapp.data.repository
 
 import com.example.shoppinglistsapp.data.database.ShoppingListsDatabase
-import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
-import com.example.shoppinglistsapp.data.entity.ItemEntity
-import com.example.shoppinglistsapp.data.entity.ItemPlaceToBuyEntity
-import com.example.shoppinglistsapp.data.entity.ListEntity
+import com.example.shoppinglistsapp.data.entity.*
+import kotlinx.coroutines.flow.Flow
 
 class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
+
+    val allItems = db.itemDao().getAllItems()
+    val allCategories = db.itemCategoryDao().getAllCategories()
+    val allPriorities = db.itemPriorityDao().getAllPriorities()
+    val allPlacesToBuy = db.itemPlaceToBuyDao().getAllPlacesToBuy()
+    val allUserLists = db.listDao().getAllLists()
+
+    fun getItemById(itemId: Long): Flow<ItemEntity> {return db.itemDao().getItemById(itemId)}
+    fun getCategoryById(categoryId: Long): Flow<ItemCategoryEntity> {return db.itemCategoryDao().getCategoryById(categoryId)}
+    fun getPriorityById(priorityId: Long): Flow<ItemPriorityEntity> {return db.itemPriorityDao().getPriorityById(priorityId)}
+    fun getPlaceToBuyById(placeToBuyId: Long): Flow<ItemPlaceToBuyEntity> {return db.itemPlaceToBuyDao().getPlaceToBuyById(placeToBuyId)}
+    fun getListById(listId: Long): Flow<ListEntity> {return db.listDao().getListById(listId)}
+
+    fun getItemsByCategoryId(categoryId: Long): Flow<List<ItemEntity>> {return db.categoryWithItemsDao().getCategoryWithItemsById(categoryId)}
+    fun getItemsByPriorityId(priorityId: Long): Flow<List<ItemEntity>> {return db.priorityWithItemsDao().getPriorityWithItemsById(priorityId)}
+    fun getItemsByPlaceToBuyId(placeToBuyId: Long): Flow<List<ItemEntity>> {return db.placeToBuyWithItemsDao().getPlaceToBuyWithItemsById(placeToBuyId)}
+    fun getItemsByListId(listId: Long): Flow<List<ItemEntity>> {return db.listWithItemsDao().getListWithItemsById(listId)}
 
     suspend fun insertItem(item: ItemEntity) = db.itemDao().insertItem(item)
     suspend fun insertCategory(category: ItemCategoryEntity) = db.itemCategoryDao().insertCategory(category)
@@ -22,22 +37,5 @@ class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
     suspend fun updateCategory(category: ItemCategoryEntity) = db.itemCategoryDao().updateCategory(category)
     suspend fun updatePlaceToBuy(placeToBuy: ItemPlaceToBuyEntity) = db.itemPlaceToBuyDao().updatePlaceToBuy(placeToBuy)
     suspend fun updateList(list: ListEntity) = db.listDao().updateList(list)
-
-    suspend fun getAllItems() = db.itemDao().getAllItems()
-    suspend fun getAllCategories() = db.itemCategoryDao().getAllCategories()
-    suspend fun getAllPriorities() = db.itemPriorityDao().getAllPriorities()
-    suspend fun getAllPlacesToBuy() = db.itemPlaceToBuyDao().getAllPlacesToBuy()
-    suspend fun getAllLists() = db.listDao().getAllLists()
-
-    suspend fun getCategoryWithItemsById(categoryId: Long) = db.categoryWithItemsDao().getCategoryWithItemsById(categoryId)
-    suspend fun getPriorityWithItemsById(priorityId: Long) = db.priorityWithItemsDao().getPriorityWithItemsById(priorityId)
-    suspend fun getPlaceToBuyWithItemsById(placeToBuyId: Long) = db.placeToBuyWithItemsDao().getPlaceToBuyWithItemsById(placeToBuyId)
-    suspend fun getListWithItemsById(listId: Long) = db.listWithItemsDao().getListWithItemsById(listId)
-
-    suspend fun getItemById(itemId: Long) = db.itemDao().getItemById(itemId)
-    suspend fun getCategoryById(categoryId: Long) = db.itemCategoryDao().getCategoryById(categoryId)
-    suspend fun getPriorityById(priorityId: Long) = db.itemPriorityDao().getPriorityById(priorityId)
-    suspend fun getPlaceToBuyById(placeToBuyId: Long) = db.itemPlaceToBuyDao().getPlaceToBuyById(placeToBuyId)
-    suspend fun getListById(listId: Long) = db.listDao().getListById(listId)
 }
 

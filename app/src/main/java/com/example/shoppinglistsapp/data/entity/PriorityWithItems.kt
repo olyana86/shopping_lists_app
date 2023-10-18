@@ -5,9 +5,10 @@ import androidx.room.Relation
 
 data class PriorityWithItems(
     @Embedded var priority: ItemPriorityEntity,
+
     @Relation(
         parentColumn = "priority_id",
-        entityColumn = "item_id"
+        entityColumn = "item_priority_id"
     )
     var items: List<ItemEntity>
 )

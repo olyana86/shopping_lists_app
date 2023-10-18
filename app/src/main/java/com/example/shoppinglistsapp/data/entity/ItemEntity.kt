@@ -16,17 +16,17 @@ data class ItemEntity(
     @ColumnInfo(name = "item_price")
     var itemPrice: Double = 0.0,
 
-    @Embedded
-    var itemPriority: ItemPriorityEntity,
+    @ColumnInfo(name = "item_priority_id")
+    var itemPriorityId: Long? = null,
 
-    @Embedded
-    var itemCategory: ItemCategoryEntity,
+    @ColumnInfo(name = "item_category_id")
+    var itemCategoryId: Long? = null,
 
-    @Embedded
-    var itemPlaceToBuy: ItemPlaceToBuyEntity,
+    @ColumnInfo(name = "item_place_to_buy_id")
+    var itemPlaceToBuyId: Long? = null,
 
-    @Embedded
-    var itemList: ListEntity,
+    @ColumnInfo(name = "item_list_id")
+    var itemListId: Long? = null,
 
     @ColumnInfo(name = "item_is_bought")
     var itemIsBought: Boolean = false

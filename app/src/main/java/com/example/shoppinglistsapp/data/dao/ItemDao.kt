@@ -2,6 +2,7 @@ package com.example.shoppinglistsapp.data.dao
 
 import androidx.room.*
 import com.example.shoppinglistsapp.data.entity.ItemEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDao {
@@ -15,8 +16,8 @@ interface ItemDao {
     fun deleteItem(item: ItemEntity)
 
     @Query("SELECT * FROM item")
-    fun getAllItems(): List<ItemEntity>
+    fun getAllItems(): Flow<List<ItemEntity>>
 
     @Query ("SELECT * FROM item WHERE item_id = :itemId LIMIT 1")
-    fun getItemById(itemId: Long): ItemEntity
+    fun getItemById(itemId: Long): Flow<ItemEntity>
 }

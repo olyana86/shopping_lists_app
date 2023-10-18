@@ -3,7 +3,9 @@ package com.example.shoppinglistsapp.data.dao
 import androidx.room.*
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.data.entity.ItemPlaceToBuyEntity
+import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface ItemPlaceToBuyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlaceToBuy(placeToBuy: ItemPlaceToBuyEntity)
@@ -15,8 +17,8 @@ interface ItemPlaceToBuyDao {
     fun deletePlaceToBuy(placeToBuy: ItemPlaceToBuyEntity)
 
     @Query("SELECT * FROM item_place_to_buy")
-    fun getAllPlacesToBuy(): List<ItemPlaceToBuyEntity>
+    fun getAllPlacesToBuy(): Flow<List<ItemPlaceToBuyEntity>>
 
     @Query ("SELECT * FROM item_place_to_buy WHERE place_to_buy_id = :placeToBuyId LIMIT 1")
-    fun getPlaceToBuyById(placeToBuyId: Long): ItemPlaceToBuyEntity
+    fun getPlaceToBuyById(placeToBuyId: Long): Flow<ItemPlaceToBuyEntity>
 }

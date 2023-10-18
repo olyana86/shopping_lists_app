@@ -14,9 +14,27 @@ class NewUserListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityNewUserListBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_user_list)
 
+        binding.listTitleEdittext
+
+        binding.readyBtn.setOnClickListener {
+
+        }
+
+        binding.manageListBtn.setOnClickListener {
+            binding.newUserChipsFrame
+
+            binding.deleteListBtn.setOnClickListener {
+
+            }
+        }
+
+        binding.userListItemsRecyclerview
+
         binding.addNewItemFab.setOnClickListener{
             var dialog = EditableItemDialogFragment()
             dialog.show(supportFragmentManager, "addItemDialog")
         }
+
+        binding.listSumTextview
     }
 }

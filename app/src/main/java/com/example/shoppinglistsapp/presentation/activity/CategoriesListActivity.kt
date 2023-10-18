@@ -7,13 +7,15 @@ import com.example.shoppinglistsapp.R
 import com.example.shoppinglistsapp.databinding.ActivityCategoriesListBinding
 import com.example.shoppinglistsapp.presentation.fragment.EditableCategoryDialogFragment
 
-lateinit var binding: ActivityCategoriesListBinding
-
 class CategoriesListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_categories_list)
+        val binding: ActivityCategoriesListBinding = DataBindingUtil.setContentView(this, R.layout.activity_categories_list)
 
+        binding.allCategoriesRecyclerview
+
+        binding.addNewCategoryFab.setOnClickListener {
+
+        }
     }
-
 }

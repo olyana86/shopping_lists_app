@@ -3,6 +3,7 @@ package com.example.shoppinglistsapp.data.dao
 import androidx.room.*
 import com.example.shoppinglistsapp.data.entity.ItemPlaceToBuyEntity
 import com.example.shoppinglistsapp.data.entity.ItemPriorityEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemPriorityDao {
@@ -10,8 +11,8 @@ interface ItemPriorityDao {
     fun insertAllPriorities(priorities: List<ItemPriorityEntity>)
 
     @Query("SELECT * FROM item_priority")
-    fun getAllPriorities(): List<ItemPriorityEntity>
+    fun getAllPriorities(): Flow<List<ItemPriorityEntity>>
 
     @Query ("SELECT * FROM item_priority WHERE priority_id = :priorityId LIMIT 1")
-    fun getPriorityById(priorityId: Long): ItemPriorityEntity
+    fun getPriorityById(priorityId: Long): Flow<ItemPriorityEntity>
 }

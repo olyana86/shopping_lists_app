@@ -10,5 +10,15 @@ class CommonAutoListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityCommonAutoListBinding = DataBindingUtil.setContentView(this, R.layout.activity_common_auto_list)
+
+        binding.manageCommonlistBtn.setOnClickListener {
+            binding.commonListChipsFrame
+        }
+
+        binding.allItemsCommonlistRecyclerview
+
+        binding.addNewItemCommonlistFab.setOnClickListener {
+
+        }
     }
 }

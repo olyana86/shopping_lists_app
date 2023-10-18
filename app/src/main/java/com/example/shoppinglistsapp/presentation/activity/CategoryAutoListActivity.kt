@@ -10,5 +10,17 @@ class CategoryAutoListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityCategoryAutoListBinding = DataBindingUtil.setContentView(this, R.layout.activity_category_auto_list)
+
+        binding.manageCatautolistBtn.setOnClickListener {
+
+        }
+
+        binding.allItemsCatautolistRecyclerview
+
+        binding.addNewItemCatautolistFab.setOnClickListener {
+
+        }
+
+
     }
 }

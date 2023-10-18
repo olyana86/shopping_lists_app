@@ -2,6 +2,7 @@ package com.example.shoppinglistsapp.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "item_category")
@@ -18,5 +19,4 @@ data class ItemCategoryEntity(
 
     @ColumnInfo(name = "is_deletable")
     var categoryIsDeletable: Boolean = true
-
 )

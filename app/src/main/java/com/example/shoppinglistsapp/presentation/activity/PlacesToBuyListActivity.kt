@@ -10,5 +10,11 @@ class PlacesToBuyListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityPlacesToBuyListBinding = DataBindingUtil.setContentView(this, R.layout.activity_places_to_buy_list)
+
+        binding.allPlacesToBuyRecyclerview
+
+        binding.addNewPlaceToBuyFab.setOnClickListener {
+
+        }
     }
 }

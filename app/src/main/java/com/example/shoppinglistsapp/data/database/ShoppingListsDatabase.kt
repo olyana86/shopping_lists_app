@@ -43,7 +43,7 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
             }
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
-            ShoppingListsDatabase::class.java, DB_NAME).build()
+            ShoppingListsDatabase::class.java, DB_NAME).addCallback(dbCreateCallback(context)).build()
 
         private fun dbCreateCallback(context: Context) =
             object : Callback() {

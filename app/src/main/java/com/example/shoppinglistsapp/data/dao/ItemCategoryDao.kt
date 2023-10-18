@@ -3,6 +3,7 @@ package com.example.shoppinglistsapp.data.dao
 import androidx.room.*
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.data.entity.ItemEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemCategoryDao {
@@ -19,8 +20,8 @@ interface ItemCategoryDao {
     fun deleteCategory(category: ItemCategoryEntity)
 
     @Query("SELECT * FROM item_category")
-    fun getAllCategories(): List<ItemCategoryEntity>
+    fun getAllCategories(): Flow<List<ItemCategoryEntity>>
 
     @Query ("SELECT * FROM item_category WHERE category_id = :categoryId LIMIT 1")
-    fun getCategoryById(categoryId: Long): ItemCategoryEntity
+    fun getCategoryById(categoryId: Long): Flow<ItemCategoryEntity>
 }
