@@ -52,10 +52,15 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
                     GlobalScope.launch {
                         getInstance(context).itemPriorityDao().insertAllPriorities(PrepopulateData.priorities)
                         getInstance(context).itemCategoryDao().insertAllCategories(PrepopulateData.categories)
+                        getInstance(context).listDao().insertList(PrepopulateData.commonList)
                     }
                 }
             }
         object PrepopulateData {
+            val commonList = ListEntity(
+                list_id = 1,
+                listName = "Общий список"
+            )
             val priorities = listOf(
                 ItemPriorityEntity(
                     priority_id = 1,

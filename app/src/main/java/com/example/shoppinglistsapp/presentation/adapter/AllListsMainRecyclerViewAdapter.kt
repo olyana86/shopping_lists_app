@@ -30,7 +30,6 @@ RecyclerView.Adapter<UserListsViewHolder>() {
         userLists.clear()
         userLists.addAll(listsTitles)
     }
-
 }
 
 class UserListsViewHolder (val binding: RecyclerListBinding) : RecyclerView.ViewHolder(binding.root) {

@@ -32,9 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.allUserListsMainRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterUserLists = AllListsMainRecyclerViewAdapter { listEntity: ListEntity ->
-            listItemClicked(
-                listEntity
-            )
+            listItemClicked(listEntity)
         }
         binding.allUserListsMainRecyclerview.adapter = adapterUserLists
         viewModel.getUserLists().observe(this, Observer {
@@ -49,24 +47,28 @@ class MainActivity : AppCompatActivity() {
 
         binding.firstPriorityBtn.setOnClickListener {
             val navigateToFirstPriorityList = Intent(this, PriorityAutoListActivity::class.java)
+            navigateToFirstPriorityList.putExtra("ID", 1)
+            navigateToFirstPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToFirstPriorityList)
         }
 
         binding.secondPriorityBtn.setOnClickListener {
             val navigateToSecondPriorityList = Intent(this, PriorityAutoListActivity::class.java)
+            navigateToSecondPriorityList.putExtra("ID", 2)
+            navigateToSecondPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToSecondPriorityList)
         }
 
         binding.thirdPriorityBtn.setOnClickListener {
             val navigateToThirdPriorityList = Intent(this, PriorityAutoListActivity::class.java)
+            navigateToThirdPriorityList.putExtra("ID", 3)
+            navigateToThirdPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToThirdPriorityList)
         }
 
         binding.allCategoriesMainRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterCategories = AllCategoriesMainRecyclerViewAdapter { itemCategoryEntity: ItemCategoryEntity ->
-            categoriesItemClicked(
-                itemCategoryEntity
-            )
+            categoriesItemClicked(itemCategoryEntity)
         }
         binding.allCategoriesMainRecyclerview.adapter = adapterCategories
         viewModel.getAllCategories().observe(this, Observer {
@@ -86,12 +88,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listItemClicked(listEntity: ListEntity){
-        Toast.makeText(this,"selected name is ${listEntity.listName}",Toast.LENGTH_LONG).show()
+        val listId = listEntity.list_id
+        val listName = listEntity.listName
+        val navigateToUserList = Intent(this, NewUserListActivity::class.java)
+        navigateToUserList.putExtra("ID", listId)
+        navigateToUserList.putExtra("NAME", listName)
+        navigateToUserList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(navigateToUserList)
     }
 
     private fun categoriesItemClicked(itemCategoryEntity: ItemCategoryEntity){
-        Toast.makeText(this,"selected name is ${itemCategoryEntity.categoryName}",Toast.LENGTH_LONG).show()
+        val categoryId = itemCategoryEntity.category_id
+        val categoryName = itemCategoryEntity.categoryName
+        val navigateToChosenCategory = Intent(this, CategoryAutoListActivity::class.java)
+        navigateToChosenCategory.putExtra("ID", categoryId)
+        navigateToChosenCategory.putExtra("NAME", categoryName)
+        navigateToChosenCategory.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(navigateToChosenCategory)
     }
-
-
 }
