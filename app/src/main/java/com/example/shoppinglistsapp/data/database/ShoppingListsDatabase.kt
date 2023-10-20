@@ -97,55 +97,55 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
                 ItemCategoryEntity(
                     category_id = 4,
                     categoryName = "Красота и здоровье",
-                    categoryIsEditable = false,
-                    categoryIsDeletable = false
+                    categoryIsEditable = true,
+                    categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 5,
                     categoryName = "Хобби",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 6,
                     categoryName = "Для детей",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 7,
                     categoryName = "Зоотовары",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 8,
                     categoryName = "Спорт и отдых",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 9,
                     categoryName = "Техника",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 10,
                     categoryName = "Ремонт",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 11,
                     categoryName = "Авто",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),
                 ItemCategoryEntity(
                     category_id = 12,
                     categoryName = "Подарки",
-                    categoryIsEditable = false,
+                    categoryIsEditable = true,
                     categoryIsDeletable = true
                 )
             )
