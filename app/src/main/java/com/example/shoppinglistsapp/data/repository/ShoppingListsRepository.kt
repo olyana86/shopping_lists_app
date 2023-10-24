@@ -8,6 +8,8 @@ class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
 
     val allItems = db.itemDao().getAllItems()
     val allCategories = db.itemCategoryDao().getAllCategories()
+    val basicCategories = db.itemCategoryDao().getBasicCategories()
+    val editableCategories = db.itemCategoryDao().getEditableCategories()
     val allPriorities = db.itemPriorityDao().getAllPriorities()
     val allPlacesToBuy = db.itemPlaceToBuyDao().getAllPlacesToBuy()
     val allUserLists = db.listDao().getAllLists()

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+    android:id="@+id/one_full_place_to_buy_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:paddingVertical="5dp">
+
+    <ImageView
+        android:id="@+id/full_place_to_buy_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/shopping_icon" />
+
+    <TextView
+        android:id="@+id/full_place_to_buy_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/full_place_to_buy_icon"
+        android:layout_toStartOf="@id/full_place_to_buy_edit_btn"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:text="Место покупки"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/full_place_to_buy_address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/full_place_to_buy_icon"
+        android:layout_toStartOf="@id/full_place_to_buy_edit_btn"
+        android:layout_below="@id/full_place_to_buy_title_text"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:paddingHorizontal="10dp"
+        android:text="Адрес выбранного пользователем места для своей покупки."
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/full_place_to_buy_edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/full_place_to_buy_delete_btn"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/full_place_to_buy_delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+</RelativeLayout>
+</layout>

@@ -14,5 +14,5 @@ data class ItemPlaceToBuyEntity(
     var placeToBuyName: String,
 
     @ColumnInfo(name = "place_to_buy_address")
-    var placeToBuyAddress: String
+    var placeToBuyAddress: String? = null
 )

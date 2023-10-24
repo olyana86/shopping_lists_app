@@ -64,7 +64,7 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
             val priorities = listOf(
                 ItemPriorityEntity(
                     priority_id = 1,
-                    priorityName = "Очень надо"
+                    priorityName = "Срочно"
                 ),
                 ItemPriorityEntity(
                     priority_id = 2,
@@ -72,7 +72,7 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
                 ),
                 ItemPriorityEntity(
                     priority_id = 3,
-                    priorityName = "Пока подождет"
+                    priorityName = "Подождет"
                 )
             )
             val categories = listOf(

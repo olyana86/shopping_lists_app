@@ -10,21 +10,30 @@ import kotlinx.coroutines.launch
 
 class CategoriesListViewModel(private val repository: ShoppingListsRepository) : ViewModel() {
 
-    fun getAllCategories() = liveData {
-        repository.allCategories.collect {
+    fun getBasicCategories() = liveData {
+        repository.basicCategories.collect {
             emit(it)
         }
     }
-    fun deleteCategory(itemCategory: ItemCategoryEntity) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteCategory(itemCategory)
+
+    fun getEditableCategories() = liveData {
+        repository.editableCategories.collect {
+            emit(it)
         }
     }
+
     fun addCategory(itemCategory: ItemCategoryEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertCategory(itemCategory)
         }
     }
+
+    fun deleteCategory(itemCategory: ItemCategoryEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteCategory(itemCategory)
+        }
+    }
+
     fun updateCategory(itemCategory: ItemCategoryEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateCategory(itemCategory)
