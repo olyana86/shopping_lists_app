@@ -40,11 +40,10 @@
             android:id="@+id/first_priority_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Очень надо"
+            android:text="Срочно"
             app:cornerRadius="50dp"
             android:textStyle="bold"
-            android:backgroundTint="#F44336"
-            />
+            android:backgroundTint="#F44336"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/second_priority_btn"
@@ -55,24 +54,23 @@
             app:cornerRadius="50dp"
             android:textStyle="bold"
             android:backgroundTint="#EEB404"/>
-    </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/third_priority_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cornerRadius="50dp"
-        android:text="Пока подождет"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btn_priority_group"
-        android:backgroundTint="#4CAF50"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/third_priority_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="50dp"
+            android:layout_marginStart="16dp"
+            android:text="Подождет"
+            android:textStyle="bold"
+            android:backgroundTint="#4CAF50"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/all_categories_main_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/third_priority_btn"
+        android:layout_below="@id/btn_priority_group"
         android:layout_above="@id/all_categories_btn"
         android:paddingVertical="8dp"/>
 

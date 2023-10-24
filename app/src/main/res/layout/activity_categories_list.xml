@@ -10,10 +10,17 @@
     tools:context=".presentation.activity.CategoriesListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/all_categories_recyclerview"
+        android:id="@+id/all_categories_basic_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_categories_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/all_categories_basic_recyclerview"
+        android:layout_above="@id/add_new_category_fab"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/add_new_category_fab"

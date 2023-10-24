@@ -12,21 +12,39 @@ import com.example.shoppinglistsapp.data.database.ShoppingListsDatabase
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import com.example.shoppinglistsapp.databinding.ActivityCategoriesListBinding
+import com.example.shoppinglistsapp.presentation.`interface`.AddCategoryDialogClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.BasicCategoryRecyclerClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.CategoriesRecyclerClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.UpdateCategoryDialogClickListener
+import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesBasicRecyclerViewAdapter
 import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesEditableRecyclerViewAdapter
-import com.example.shoppinglistsapp.presentation.fragment.EditableCategoryDialogFragment
+import com.example.shoppinglistsapp.presentation.fragment.AddCategoryDialogFragment
+import com.example.shoppinglistsapp.presentation.fragment.EditCategoryDialogFragment
 import com.example.shoppinglistsapp.presentation.viewmodel.CategoriesListViewModel
 import com.example.shoppinglistsapp.presentation.viewmodel.CategoriesListViewModelFactory
 
 class CategoriesListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityCategoriesListBinding = DataBindingUtil.setContentView(this, R.layout.activity_categories_list)
+        val binding: ActivityCategoriesListBinding = DataBindingUtil.setContentView(this,
+            R.layout.activity_categories_list)
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
         val factory = CategoriesListViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[CategoriesListViewModel::class.java]
+
+        binding.allCategoriesBasicRecyclerview.layoutManager = LinearLayoutManager(this)
+        val adapterBasicCategories = AllCategoriesBasicRecyclerViewAdapter(object : BasicCategoryRecyclerClickListener {
+            override fun onItemClicked(itemCategoryEntity: ItemCategoryEntity) {
+                categoryItemClicked(itemCategoryEntity)
+            }
+        })
+        binding.allCategoriesBasicRecyclerview.adapter = adapterBasicCategories
+        viewModel.getBasicCategories().observe(this, Observer {
+            adapterBasicCategories.setBasicCategoriesList(it)
+            adapterBasicCategories.notifyDataSetChanged()
+        })
 
         binding.allCategoriesRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object : CategoriesRecyclerClickListener {
@@ -35,7 +53,12 @@ class CategoriesListActivity : AppCompatActivity() {
             }
 
             override fun onEditItemClicked(itemCategoryEntity: ItemCategoryEntity) {
-                TODO("Not yet implemented")
+                val editDialog = EditCategoryDialogFragment(object : UpdateCategoryDialogClickListener {
+                    override fun updateCategory(itemCategoryEntity: ItemCategoryEntity) {
+                        viewModel.updateCategory(itemCategoryEntity)
+                    }
+                }, itemCategoryEntity)
+                editDialog.show(supportFragmentManager, "editCategoryDialog")
             }
 
             override fun onDeleteItemClicked(itemCategoryEntity: ItemCategoryEntity) {
@@ -43,14 +66,18 @@ class CategoriesListActivity : AppCompatActivity() {
             }
         })
         binding.allCategoriesRecyclerview.adapter = adapterCategories
-        viewModel.getAllCategories().observe(this, Observer {
+        viewModel.getEditableCategories().observe(this, Observer {
             adapterCategories.setAllCategoriesList(it)
             adapterCategories.notifyDataSetChanged()
         })
 
-
         binding.addNewCategoryFab.setOnClickListener {
-
+            val newDialog = AddCategoryDialogFragment(object : AddCategoryDialogClickListener {
+                override fun addCategory(itemCategoryEntity: ItemCategoryEntity) {
+                    viewModel.addCategory(itemCategoryEntity)
+                }
+            })
+            newDialog.show(supportFragmentManager, "addCategoryDialog")
         }
     }
 
