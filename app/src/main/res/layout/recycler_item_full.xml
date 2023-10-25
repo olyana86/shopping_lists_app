@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/one_full_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingVertical="5dp"
+        android:background="#FFEB3B">
+
+        <CheckBox
+            android:id="@+id/one_full_item_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/one_full_item_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/one_full_item_checkBox"
+            android:layout_toStartOf="@id/one_full_item_delete_btn"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Название покупки"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/one_full_item_price_and_quantity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/one_full_item_checkBox"
+            android:layout_below="@id/one_full_item_title_text"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Цена: 0, 1 шт."
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:id="@+id/one_full_item_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:paddingStart="4dp"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    </RelativeLayout>
+</layout>

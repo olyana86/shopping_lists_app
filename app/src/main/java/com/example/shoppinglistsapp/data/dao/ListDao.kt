@@ -1,7 +1,6 @@
 package com.example.shoppinglistsapp.data.dao
 
 import androidx.room.*
-import com.example.shoppinglistsapp.data.entity.ItemPriorityEntity
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -9,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface ListDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertList(list: ListEntity)
+    fun insertList(list: ListEntity): Long
 
     @Update
     fun updateList(list: ListEntity)

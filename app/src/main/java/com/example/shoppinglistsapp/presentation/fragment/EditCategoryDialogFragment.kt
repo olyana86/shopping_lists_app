@@ -33,15 +33,13 @@ itemCategoryEntity: ItemCategoryEntity) :
         }
 
         binding.dialogCategorySaveBtn.setOnClickListener {
-            var categoryTitle = binding.dialogCategoryTitleInputTextview.text.toString()
-            if(categoryTitle == null) {
-                dismiss()
-            } else {
+            val categoryTitle = binding.dialogCategoryTitleInputTextview.text.toString()
+            if(categoryTitle != "") {
                 val editedCategory = ItemCategoryEntity(category_id = categoryId,
                 categoryName = categoryTitle, categoryIsEditable = true, categoryIsDeletable = true)
                 updateCategoryListener.updateCategory(editedCategory)
-                dismiss()
             }
+            dismiss()
         }
         return binding.root
     }

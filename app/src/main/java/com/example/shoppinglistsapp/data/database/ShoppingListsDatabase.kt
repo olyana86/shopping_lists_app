@@ -25,10 +25,6 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
     abstract fun itemPriorityDao(): ItemPriorityDao
     abstract fun itemPlaceToBuyDao(): ItemPlaceToBuyDao
     abstract fun listDao(): ListDao
-    abstract fun categoryWithItemsDao(): CategoryWithItemsDao
-    abstract fun placeToBuyWithItemsDao(): PlaceToBuyWithItemsDao
-    abstract fun priorityWithItemsDao(): PriorityWithItemsDao
-    abstract fun listWithItemsDao(): ListWithItemsDao
 
     companion object {
         const val DB_VERSION = 1

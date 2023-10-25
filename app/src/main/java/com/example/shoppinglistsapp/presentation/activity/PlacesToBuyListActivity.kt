@@ -62,7 +62,7 @@ class PlacesToBuyListActivity : AppCompatActivity() {
         binding.addNewPlaceToBuyFab.setOnClickListener {
             val newDialog = AddPlaceToBuyDialogFragment(object : AddPlaceToBuyDialogClickListener {
                 override fun addPlaceToBuy(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
-                   viewModel.addPlaceToBuy(itemPlaceToBuyEntity)
+                    viewModel.addPlaceToBuy(itemPlaceToBuyEntity)
                 }
             })
             newDialog.show(supportFragmentManager, "addPlaceToBuyDialog")
@@ -73,7 +73,7 @@ class PlacesToBuyListActivity : AppCompatActivity() {
         val placeToBuyName = itemPlaceToBuyEntity.placeToBuyName
         val placeToBuyAddress = itemPlaceToBuyEntity.placeToBuyAddress
         val navigateToChosenPlaceToBuyList = Intent(this,
-        PlaceToBuyAutoListActivity::class.java)
+        AutoListActivity::class.java)
         navigateToChosenPlaceToBuyList.putExtra("ID", placeToBuyId)
         navigateToChosenPlaceToBuyList.putExtra("NAME", placeToBuyName)
         navigateToChosenPlaceToBuyList.putExtra("ADDRESS", placeToBuyAddress)

@@ -25,16 +25,14 @@ class AddCategoryDialogFragment(var addCategoryListener: AddCategoryDialogClickL
             dismiss()
         }
         binding.dialogCategorySaveBtn.setOnClickListener {
-            var categoryTitle: String? = binding.dialogCategoryTitleInputTextview.text.toString()
-            if(categoryTitle == null) {
-                dismiss()
-            } else {
+            val categoryTitle = binding.dialogCategoryTitleInputTextview.text.toString()
+            if(categoryTitle != "") {
                 val newCategory = ItemCategoryEntity(category_id = null,
                     categoryName = categoryTitle, categoryIsEditable = true,
                     categoryIsDeletable = true)
                 addCategoryListener.addCategory(newCategory)
-                dismiss()
             }
+            dismiss()
         }
         return binding.root
     }

@@ -27,16 +27,14 @@ class AddPlaceToBuyDialogFragment(var addPlaceToBuyListener: AddPlaceToBuyDialog
            dismiss()
        }
        binding.dialogPlaceSaveBtn.setOnClickListener {
-           var newPlaceToBuyTitle: String? = binding.dialogPlaceTitleInputTextview.text.toString()
-           var newPlaceToBuyAddress: String? = binding.dialogPlaceAddressInputTextview.text.toString()
-           if (newPlaceToBuyTitle == null) {
-               dismiss()
-           } else {
+           val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
+           if (newPlaceToBuyTitle != "") {
+               var newPlaceToBuyAddress: String? = binding.dialogPlaceAddressInputTextview.text.toString()
                val newPlaceToBuy = ItemPlaceToBuyEntity(place_to_buy_id = null,
                placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress)
                addPlaceToBuyListener.addPlaceToBuy(newPlaceToBuy)
-               dismiss()
            }
+           dismiss()
        }
        return binding.root
     }

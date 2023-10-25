@@ -14,7 +14,7 @@ import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import com.example.shoppinglistsapp.databinding.ActivityCategoriesListBinding
 import com.example.shoppinglistsapp.presentation.`interface`.AddCategoryDialogClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.BasicCategoryRecyclerClickListener
-import com.example.shoppinglistsapp.presentation.`interface`.CategoriesRecyclerClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRecyclerClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.UpdateCategoryDialogClickListener
 import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesBasicRecyclerViewAdapter
 import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesEditableRecyclerViewAdapter
@@ -47,7 +47,7 @@ class CategoriesListActivity : AppCompatActivity() {
         })
 
         binding.allCategoriesRecyclerview.layoutManager = LinearLayoutManager(this)
-        val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object : CategoriesRecyclerClickListener {
+        val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object : EditableCategoryRecyclerClickListener {
             override fun onItemClicked(itemCategoryEntity: ItemCategoryEntity) {
                 categoryItemClicked(itemCategoryEntity)
             }
@@ -85,7 +85,7 @@ class CategoriesListActivity : AppCompatActivity() {
         val categoryId = itemCategoryEntity.category_id
         val categoryName = itemCategoryEntity.categoryName
         val navigateToChosenCategoryList = Intent(this,
-            CategoryAutoListActivity::class.java)
+            AutoListActivity::class.java)
         navigateToChosenCategoryList.putExtra("ID", categoryId)
         navigateToChosenCategoryList.putExtra("NAME", categoryName)
         navigateToChosenCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK

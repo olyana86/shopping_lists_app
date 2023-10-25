@@ -11,7 +11,7 @@ import com.example.shoppinglistsapp.presentation.`interface`.PlacesToBuyRecycler
 
 class AllPlacesToBuyEditableRecyclerViewAdapter(var placesToBuyClickListener:
     PlacesToBuyRecyclerClickListener) : RecyclerView.Adapter<AllPlacesToBuyEditableRecyclerViewAdapter.PlacesToBuyEditableViewHolder>() {
-    val editablePlacesToBuy = ArrayList<ItemPlaceToBuyEntity>()
+    private val editablePlacesToBuy = ArrayList<ItemPlaceToBuyEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             PlacesToBuyEditableViewHolder {

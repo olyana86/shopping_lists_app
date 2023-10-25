@@ -7,10 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".presentation.activity.CommonAutoListActivity">
+    tools:context=".presentation.activity.AutoListActivity">
 
     <Button
-        android:id="@+id/manage_commonlist_btn"
+        android:id="@+id/manage_auto_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Управление списком"
@@ -18,23 +18,23 @@
         android:layout_centerHorizontal="true"/>
 
     <FrameLayout
-        android:id="@+id/common_list_chips_frame"
+        android:id="@+id/auto_list_chips_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/manage_commonlist_btn"
+        android:layout_below="@id/manage_auto_list_btn"
         android:layout_centerHorizontal="true">
         <include layout="@layout/reusable_manage_list_chips" />
 
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/all_items_commonlist_recyclerview"
+        android:id="@+id/all_items_auto_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/common_list_chips_frame"/>
+        android:layout_below="@id/auto_list_chips_frame"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_new_item_commonlist_fab"
+        android:id="@+id/add_new_item_auto_list_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

@@ -2,7 +2,7 @@ package com.example.shoppinglistsapp.presentation.`interface`
 
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 
-interface CategoriesRecyclerClickListener {
+interface EditableCategoryRecyclerClickListener {
 
     fun onItemClicked(itemCategoryEntity: ItemCategoryEntity)
 

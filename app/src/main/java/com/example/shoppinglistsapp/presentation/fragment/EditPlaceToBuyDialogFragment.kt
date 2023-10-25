@@ -19,8 +19,6 @@ itemPlaceToBuyEntity: ItemPlaceToBuyEntity) : DialogFragment() {
     private val oldPlaceToBuyTitle = itemPlaceToBuyEntity.placeToBuyName
     private val oldPlaceToBuyAddress: String? = itemPlaceToBuyEntity.placeToBuyAddress
     private val placeToBuyId = itemPlaceToBuyEntity.place_to_buy_id
-    private var newPlaceToBuyTitle: String? = null
-    private var newPlaceToBuyAddress: String? = null
 
         override fun onCreateView(inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,16 +36,14 @@ itemPlaceToBuyEntity: ItemPlaceToBuyEntity) : DialogFragment() {
        }
 
        binding.dialogPlaceSaveBtn.setOnClickListener {
-           newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
-           newPlaceToBuyAddress = binding.dialogPlaceAddressInputTextview.text.toString()
-           if (newPlaceToBuyTitle == null) {
-               dismiss()
-           } else {
+           val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
+           if (newPlaceToBuyTitle != "") {
+               var newPlaceToBuyAddress: String? = binding.dialogPlaceAddressInputTextview.text.toString()
                val editedPlaceToBuy = ItemPlaceToBuyEntity(place_to_buy_id = placeToBuyId,
-                   placeToBuyName = newPlaceToBuyTitle!!, placeToBuyAddress = newPlaceToBuyAddress)
+               placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress)
                updatePlaceToBuyListener.updatePlaceToBuy(editedPlaceToBuy)
-               dismiss()
            }
+           dismiss()
        }
        return binding.root
     }

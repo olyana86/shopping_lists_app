@@ -7,59 +7,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".presentation.activity.NewUserListActivity">
+    tools:context=".presentation.activity.SingleUserListActivity">
 
-    <EditText
-        android:id="@+id/list_title_edittext"
+    <TextView
+        android:id="@+id/list_title_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:hint="Название списка"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:layout_alignBottom="@id/user_list_title_edit_btn"
+        android:layout_toStartOf="@id/user_list_title_edit_btn"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Название списка"
         android:singleLine="true" />
 
-    <Button
-        android:id="@+id/ready_btn"
+    <ImageButton
+        android:id="@+id/user_list_title_edit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_title_edittext"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
-        android:text="Готово" />
+        android:layout_alignParentTop="true"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <Button
+        android:id="@+id/delete_list_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_list_title_edit_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:text="Удалить список" />
 
     <Button
         android:id="@+id/manage_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_title_edittext"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_toStartOf="@+id/ready_btn"
-        android:text="Управление списком" />
+        android:layout_toStartOf="@id/delete_list_btn"
+        android:layout_below="@id/user_list_title_edit_btn"
+        android:visibility="gone"
+        android:text="Сортировка" />
 
    <FrameLayout
        android:id="@+id/new_user_chips_frame"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_centerHorizontal="true"
-       android:layout_below="@id/ready_btn">
+       android:layout_below="@id/delete_list_btn"
+       android:visibility="gone">
        <include layout="@layout/reusable_manage_list_chips"/>
    </FrameLayout>
-
-    <Button
-        android:id="@+id/delete_list_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/new_user_chips_frame"
-        android:layout_centerHorizontal="true"
-        android:text="Удалить список" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list_items_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/delete_list_btn"
+        android:layout_below="@id/new_user_chips_frame"
         android:layout_above="@id/add_new_item_fab"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -79,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Сумма:  Еще надо: "
+        android:text="Сумма: 0     Осталось: 0"
         android:textColor="@color/black"
         android:textAlignment="viewEnd"
         android:textSize="18sp"/>

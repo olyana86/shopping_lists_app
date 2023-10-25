@@ -13,21 +13,7 @@
         android:theme="@style/Theme.НадоКупить"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activity.PlaceToBuyAutoListActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".presentation.activity.CategoryAutoListActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".presentation.activity.CommonAutoListActivity"
+            android:name=".presentation.activity.AutoListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -48,14 +34,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.activity.PriorityAutoListActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".presentation.activity.NewUserListActivity"
+            android:name=".presentation.activity.SingleUserListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

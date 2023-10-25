@@ -18,6 +18,9 @@ interface ItemDao {
     @Query("SELECT * FROM item")
     fun getAllItems(): Flow<List<ItemEntity>>
 
-    @Query ("SELECT * FROM item WHERE item_id = :itemId LIMIT 1")
+    @Query("SELECT * FROM item WHERE item_id = :itemId LIMIT 1")
     fun getItemById(itemId: Long): Flow<ItemEntity>
+
+    @Query("SELECT * FROM item WHERE item_list_id = :listId")
+    fun getItemsByListId(listId: Long): Flow<List<ItemEntity>>
 }
