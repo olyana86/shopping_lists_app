@@ -10,23 +10,20 @@ import com.example.shoppinglistsapp.R
 import com.example.shoppinglistsapp.data.database.ShoppingListsDatabase.Companion.PrepopulateData.categories
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.databinding.RecyclerCategoryFullBinding
-import com.example.shoppinglistsapp.presentation.`interface`.CategoriesRecyclerClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRecyclerClickListener
 
-<<<<<<<<< Temporary merge branch 1
-class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener: CategoriesRecyclerClickListener) :
+
+class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener: EditableCategoryRecyclerClickListener) :
     RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.CategoriesEditableViewHolder>() {
-=========
-class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener:
-    CategoriesRecyclerClickListener) : RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.
-    CategoriesEditableViewHolder>() {
->>>>>>>>> Temporary merge branch 2
     val editableCategories = ArrayList<ItemCategoryEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             CategoriesEditableViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: RecyclerCategoryFullBinding = DataBindingUtil.inflate(layoutInflater,
-            R.layout.recycler_category_full, parent, false)
+        val binding: RecyclerCategoryFullBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.recycler_category_full, parent, false
+        )
         return CategoriesEditableViewHolder(binding)
     }
 
