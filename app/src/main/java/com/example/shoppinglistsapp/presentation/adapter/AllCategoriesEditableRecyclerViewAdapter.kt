@@ -1,17 +1,25 @@
 package com.example.shoppinglistsapp.presentation.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistsapp.R
+import com.example.shoppinglistsapp.data.database.ShoppingListsDatabase.Companion.PrepopulateData.categories
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.databinding.RecyclerCategoryFullBinding
-import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRecyclerClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.CategoriesRecyclerClickListener
 
-class AllCategoriesEditableRecyclerViewAdapter(var editableCategoryRecyclerClickListener:
-    EditableCategoryRecyclerClickListener) : RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.
+<<<<<<<<< Temporary merge branch 1
+class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener: CategoriesRecyclerClickListener) :
+    RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.CategoriesEditableViewHolder>() {
+=========
+class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener:
+    CategoriesRecyclerClickListener) : RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.
     CategoriesEditableViewHolder>() {
+>>>>>>>>> Temporary merge branch 2
     val editableCategories = ArrayList<ItemCategoryEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -26,15 +34,15 @@ class AllCategoriesEditableRecyclerViewAdapter(var editableCategoryRecyclerClick
         holder.bind(editableCategories[position])
         holder.binding.fullCategoryDeleteBtn.setOnClickListener {
             val deletedItem: ItemCategoryEntity = editableCategories[position]
-            editableCategoryRecyclerClickListener.onDeleteItemClicked(deletedItem)
+            categoriesRecyclerClickListener.onDeleteItemClicked(deletedItem)
         }
         holder.binding.fullCategoryEditBtn.setOnClickListener {
             val editedItem: ItemCategoryEntity = editableCategories[position]
-            editableCategoryRecyclerClickListener.onEditItemClicked(editedItem)
+            categoriesRecyclerClickListener.onEditItemClicked(editedItem)
         }
         holder.binding.oneFullCategoryItem.setOnClickListener {
             val chosenItem: ItemCategoryEntity = editableCategories[position]
-            editableCategoryRecyclerClickListener.onItemClicked(chosenItem)
+            categoriesRecyclerClickListener.onItemClicked(chosenItem)
         }
     }
 
