@@ -3,6 +3,7 @@ package com.example.shoppinglistsapp.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.shoppinglistsapp.data.entity.ItemEntity
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import kotlinx.coroutines.Dispatchers
@@ -27,4 +28,23 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
             emit(it)
         }
     }
+
+    fun deleteItem(itemEntity: ItemEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteItem(itemEntity)
+        }
+    }
+
+    fun updateItem(itemEntity: ItemEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateItem(itemEntity)
+        }
+    }
+
+    fun addItem(itemEntity: ItemEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertItem(itemEntity)
+        }
+    }
+
 }

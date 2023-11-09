@@ -1,5 +1,6 @@
 package com.example.shoppinglistsapp.presentation.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,7 +12,8 @@ import com.example.shoppinglistsapp.presentation.`interface`.ItemsRecyclerClickL
 
 class UserListItemsRecyclerViewAdapter(var clickListener: ItemsRecyclerClickListener) :
 RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
-    val editableItems = ArrayList<ItemEntity>()
+    private var editableItems = ArrayList<ItemEntity>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,9 +24,14 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         holder.bind(editableItems[position])
+        val item = editableItems[position]
+        if (item.itemIsBought) {
+            holder.binding.oneFullItemCheckBox.isChecked
+        }
+
         holder.binding.oneFullItemDeleteBtn.setOnClickListener {
-            val deletedIted: ItemEntity = editableItems[position]
-            clickListener.onDeleteItemClicked(deletedIted)
+            val deletedItem: ItemEntity = editableItems[position]
+            clickListener.onDeleteItemClicked(deletedItem)
         }
         holder.binding.oneFullItem.setOnClickListener {
             val chosenItem: ItemEntity = editableItems[position]
@@ -32,7 +39,12 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
         }
         holder.binding.oneFullItemCheckBox.setOnClickListener {
             val checkedItem: ItemEntity = editableItems[position]
-            holder.binding.oneFullItemCheckBox.isChecked
+            if (!checkedItem.itemIsBought) {
+                holder.binding.oneFullItemCheckBox.isChecked
+                checkedItem.itemIsBought = true
+            } else {
+                checkedItem.itemIsBought = false
+            }
             clickListener.onCheckItemClicked(checkedItem)
         }
     }
@@ -46,10 +58,18 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
         editableItems.addAll(itemsNames)
     }
 
+
     class ItemsViewHolder(val binding: RecyclerItemFullBinding) :
             RecyclerView.ViewHolder(binding.root) {
                 fun bind(itemEntity: ItemEntity) {
                     binding.oneFullItemTitleText.text = itemEntity.itemName
-                }
+
+                    val thisItemPrice = itemEntity.itemPrice
+                    val thisItemQuantity = itemEntity.itemQuantity
+                    val thisItemPriceAndQuantity = "Цена: $thisItemPrice, $thisItemQuantity"
+                    binding.oneFullItemPriceAndQuantityText.text = thisItemPriceAndQuantity
+            }
+
     }
+
 }

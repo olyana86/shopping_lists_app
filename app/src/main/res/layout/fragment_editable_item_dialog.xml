@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.EditItemDialogFragment">
 
     <RelativeLayout
@@ -19,48 +19,29 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:hint="Название покупки"
+            android:gravity="center_horizontal"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:singleLine="true" />
 
-        <TextView
-            android:id="@+id/item_quantity_textview"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/dialog_item_quantity_input_textview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dialog_item_title_input_textview"
-            android:layout_marginVertical="8dp"
-            android:text="Количество: "
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/item_quantity_input_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/item_quantity_textview"
-            android:layout_toEndOf="@id/item_quantity_textview"
+            android:hint="Количество"
             android:gravity="center_horizontal"
-            android:hint="1 шт."
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:singleLine="true" />
 
-        <TextView
-            android:id="@+id/item_price_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_quantity_textview"
-            android:layout_marginVertical="8dp"
-            android:text="Цена: "
-            android:textSize="18sp" />
-
         <EditText
-            android:id="@+id/item_price_input_textview"
+            android:id="@+id/dialog_item_price_input_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/item_price_textview"
-            android:layout_toEndOf="@id/item_price_textview"
             android:gravity="center_horizontal"
-            android:hint="0"
+            android:layout_below="@id/dialog_item_quantity_input_textview"
+            android:hint="Цена покупки"
             android:inputType="number"
             android:minHeight="48dp"
             android:singleLine="true" />
@@ -69,90 +50,51 @@
             android:id="@+id/dialog_priority_chips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/item_price_textview"
-            android:focusable="true">
+            android:paddingBottom="8dp"
+            android:layout_below="@id/dialog_item_price_input_textview"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/first_priority_chip"
+                android:id="@+id/add_item_chip_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="очень надо" />
+                android:text="срочно"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="true"/>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/second_priority_chip"
+                android:id="@+id/add_item_chip_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="надо" />
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="надо"
+                app:checkedIconVisible="true"/>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/third_priority_chip"
+                android:id="@+id/add_item_chip_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="пока подождет" />
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="подождет"
+                app:checkedIconVisible="true"/>
         </com.google.android.material.chip.ChipGroup>
 
-        <TextView
-            android:id="@+id/dialog_categories_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Категория покупки"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/dialog_priority_chips"
-            android:layout_centerHorizontal="true"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dialog_categories_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dialog_categories_textview"/>
-
-        <TextView
-            android:id="@+id/dialog_places_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Место покупки"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/dialog_categories_recyclerview"
-            android:layout_centerHorizontal="true"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dialog_places_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dialog_places_textview"
-            android:layout_above="@id/add_new_place_dialog_fab"/>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/add_new_place_dialog_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:clickable="true"
-            android:text="Новое место"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:icon="@android:drawable/ic_input_add"
-            android:layout_above="@id/item_dialog_save_btn"/>
-
         <Button
-            android:id="@+id/item_dialog_cancel_btn"
+            android:id="@+id/dialog_item_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Отмена"
-            android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@id/item_dialog_save_btn"/>
+            android:layout_below="@id/dialog_priority_chips"
+            android:layout_toStartOf="@id/dialog_item_save_btn"/>
 
         <Button
-            android:id="@+id/item_dialog_save_btn"
+            android:id="@+id/dialog_item_save_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Сохранить"
-            android:layout_marginStart="16dp"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/dialog_priority_chips"
+            android:layout_marginStart="8dp"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 </FrameLayout>

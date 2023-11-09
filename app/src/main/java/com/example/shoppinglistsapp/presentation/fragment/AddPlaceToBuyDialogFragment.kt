@@ -29,7 +29,7 @@ class AddPlaceToBuyDialogFragment(var addPlaceToBuyListener: AddPlaceToBuyDialog
        binding.dialogPlaceSaveBtn.setOnClickListener {
            val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
            if (newPlaceToBuyTitle != "") {
-               var newPlaceToBuyAddress: String? = binding.dialogPlaceAddressInputTextview.text.toString()
+               val newPlaceToBuyAddress: String = binding.dialogPlaceAddressInputTextview.text.toString()
                val newPlaceToBuy = ItemPlaceToBuyEntity(place_to_buy_id = null,
                placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress)
                addPlaceToBuyListener.addPlaceToBuy(newPlaceToBuy)
