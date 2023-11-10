@@ -7,6 +7,7 @@ import com.example.shoppinglistsapp.data.entity.ItemEntity
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewModel() {
@@ -29,6 +30,18 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
         }
     }
 
+    fun getSumOfItemsByListId(listId: Long) = liveData {
+        repository.getSumOfItemsByListId(listId).collect{
+            emit(it)
+        }
+    }
+
+    fun getRemainingSumOfItemsByListId(listId: Long) = liveData {
+        repository.getRemainingSumOfItemsByListId(listId).collect{
+            emit(it)
+        }
+    }
+
     fun deleteItem(itemEntity: ItemEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteItem(itemEntity)
@@ -46,5 +59,7 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
             repository.insertItem(itemEntity)
         }
     }
-
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

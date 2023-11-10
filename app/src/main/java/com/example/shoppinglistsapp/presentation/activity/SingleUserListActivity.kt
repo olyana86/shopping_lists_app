@@ -2,6 +2,7 @@ package com.example.shoppinglistsapp.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +15,11 @@ import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import com.example.shoppinglistsapp.databinding.ActivitySingleUserListBinding
 import com.example.shoppinglistsapp.presentation.`interface`.AddItemDialogClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.ItemsRecyclerClickListener
+import com.example.shoppinglistsapp.presentation.`interface`.UpdateItemDialogClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.UpdateListDialogClickListener
 import com.example.shoppinglistsapp.presentation.adapter.UserListItemsRecyclerViewAdapter
 import com.example.shoppinglistsapp.presentation.fragment.AddItemDialogFragment
+import com.example.shoppinglistsapp.presentation.fragment.EditItemDialogFragment
 import com.example.shoppinglistsapp.presentation.fragment.EditListDialogFragment
 import com.example.shoppinglistsapp.presentation.viewmodel.SingleUserListViewModel
 import com.example.shoppinglistsapp.presentation.viewmodel.SingleUserListViewModelFactory
@@ -34,7 +37,7 @@ class SingleUserListActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, factory)[SingleUserListViewModel::class.java]
 
         val oldListTitle = intent.getStringExtra("NAME")
-        val listId = intent.getLongExtra("ID", 0)
+        val listId = intent.getLongExtra("ID", 1)
 
         binding.listTitleTextview.text = oldListTitle
 
@@ -57,10 +60,16 @@ class SingleUserListActivity : AppCompatActivity() {
         val adapterUserListItems = UserListItemsRecyclerViewAdapter(object :
         ItemsRecyclerClickListener {
             override fun onItemClicked(itemEntity: ItemEntity) {
-                TODO("Not yet implemented")
+                val editDialog = EditItemDialogFragment(object : UpdateItemDialogClickListener {
+                    override fun updateItem(itemEntity: ItemEntity) {
+                        viewModel.updateItem(itemEntity)
+                    }
+                }, itemEntity)
+                editDialog.show(supportFragmentManager, "editItemDialog")
             }
 
             override fun onCheckItemClicked(itemEntity: ItemEntity) {
+                itemEntity.itemIsBought = !itemEntity.itemIsBought
                 viewModel.updateItem(itemEntity)
             }
 
@@ -83,5 +92,14 @@ class SingleUserListActivity : AppCompatActivity() {
             })
             newDialog.show(supportFragmentManager, "addItemDialog")
         }
+
+        viewModel.getSumOfItemsByListId(listId).observe(this, Observer {
+            val itemsSum = it
+            binding.listSumTextview.text = "Сумма: $itemsSum"
+        })
+        viewModel.getRemainingSumOfItemsByListId(listId).observe(this, Observer {
+            val remainingSum = it
+            binding.listRemainingSumTextview.text = "Еще: $remainingSum"
+        })
     }
 }

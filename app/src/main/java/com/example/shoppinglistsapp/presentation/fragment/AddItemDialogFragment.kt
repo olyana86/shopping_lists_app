@@ -31,13 +31,13 @@ DialogFragment() {
 
         binding.dialogPriorityChips.setOnCheckedStateChangeListener { group, checkedIds ->
            val chipId = group.checkedChipId
-           if (chipId.equals(binding.addItemChipOne.id)) {
-               itemPriority = 1
-           } else if (chipId.equals(binding.addItemChipTwo.id)) {
-               itemPriority = 2
-           } else {
-               itemPriority = 3
-           }
+            itemPriority = if (chipId == binding.addItemChipOne.id) {
+                1
+            } else if (chipId == binding.addItemChipTwo.id) {
+                2
+            } else {
+                3
+            }
         }
 
         binding.dialogItemSaveBtn.setOnClickListener {
@@ -66,5 +66,3 @@ DialogFragment() {
         _binding = null
     }
 }
-
-

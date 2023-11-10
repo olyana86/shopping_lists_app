@@ -27,6 +27,9 @@ class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
     fun getItemsByPlaceToBuyId(placeToBuyId: Long): Flow<List<ItemEntity>> {return db.itemPlaceToBuyDao().getPlaceToBuyWithItemsById(placeToBuyId)}
     fun getItemsByListId(listId: Long): Flow<List<ItemEntity>> {return db.itemDao().getItemsByListId(listId)}
 
+    fun getSumOfItemsByListId(listId: Long): Flow<Int> {return db.itemDao().getSumOfItemsByListId(listId)}
+    fun getRemainingSumOfItemsByListId (listId: Long): Flow<Int> {return db.itemDao().getRemainingSumOfItemsByListId(listId)}
+
     suspend fun insertItem(item: ItemEntity) = db.itemDao().insertItem(item)
     suspend fun insertCategory(category: ItemCategoryEntity) = db.itemCategoryDao().insertCategory(category)
     suspend fun insertPlaceToBuy(placeToBuy: ItemPlaceToBuyEntity) = db.itemPlaceToBuyDao().insertPlaceToBuy(placeToBuy)

@@ -12,8 +12,8 @@ import com.example.shoppinglistsapp.presentation.`interface`.ItemsRecyclerClickL
 
 class UserListItemsRecyclerViewAdapter(var clickListener: ItemsRecyclerClickListener) :
 RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
-    private var editableItems = ArrayList<ItemEntity>()
-
+    var editableItems = ArrayList<ItemEntity>()
+    var allBoughtItemsIds = getBoughtItemsIds(editableItems)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,10 +24,6 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         holder.bind(editableItems[position])
-        val item = editableItems[position]
-        if (item.itemIsBought) {
-            holder.binding.oneFullItemCheckBox.isChecked
-        }
 
         holder.binding.oneFullItemDeleteBtn.setOnClickListener {
             val deletedItem: ItemEntity = editableItems[position]
@@ -37,14 +33,9 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
             val chosenItem: ItemEntity = editableItems[position]
             clickListener.onItemClicked(chosenItem)
         }
-        holder.binding.oneFullItemCheckBox.setOnClickListener {
+
+        holder.binding.oneFullItemCheckBox.setOnCheckedChangeListener { compoundButton, b ->
             val checkedItem: ItemEntity = editableItems[position]
-            if (!checkedItem.itemIsBought) {
-                holder.binding.oneFullItemCheckBox.isChecked
-                checkedItem.itemIsBought = true
-            } else {
-                checkedItem.itemIsBought = false
-            }
             clickListener.onCheckItemClicked(checkedItem)
         }
     }
@@ -70,6 +61,19 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
                     binding.oneFullItemPriceAndQuantityText.text = thisItemPriceAndQuantity
             }
 
+    }
+
+    fun getBoughtItemsIds(listItems: ArrayList<ItemEntity>): ArrayList<String> {
+        var boughtItemsIds = ArrayList<String>()
+        for (item in listItems) {
+            if (item.itemIsBought == true) {
+                val itemId = item.item_id.toString()
+                if (itemId != "") {
+                    boughtItemsIds.add(itemId)
+                }
+            }
+        }
+        return boughtItemsIds
     }
 
 }
