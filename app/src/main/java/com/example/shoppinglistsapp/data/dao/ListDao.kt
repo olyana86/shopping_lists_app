@@ -13,8 +13,8 @@ interface ListDao {
     @Update
     fun updateList(list: ListEntity)
 
-    @Delete
-    fun deleteList(list: ListEntity)
+    @Query("DELETE FROM list WHERE list_id = :listId")
+    fun deleteList(listId: Long)
 
     @Query("SELECT * FROM list")
     fun getAllLists(): Flow<List<ListEntity>>

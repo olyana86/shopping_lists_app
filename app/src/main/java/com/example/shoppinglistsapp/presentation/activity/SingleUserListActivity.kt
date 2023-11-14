@@ -1,8 +1,9 @@
 package com.example.shoppinglistsapp.presentation.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,8 +29,10 @@ class SingleUserListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivitySingleUserListBinding = DataBindingUtil.setContentView(this,
-            R.layout.activity_single_user_list)
+        val binding: ActivitySingleUserListBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_single_user_list
+        )
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -52,13 +55,9 @@ class SingleUserListActivity : AppCompatActivity() {
             editTitleDialog.show(supportFragmentManager, "editListTitleDialog")
         }
 
-        binding.deleteListBtn.setOnClickListener {
-
-        }
-
         binding.userListItemsRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterUserListItems = UserListItemsRecyclerViewAdapter(object :
-        ItemsRecyclerClickListener {
+            ItemsRecyclerClickListener {
             override fun onItemClicked(itemEntity: ItemEntity) {
                 val editDialog = EditItemDialogFragment(object : UpdateItemDialogClickListener {
                     override fun updateItem(itemEntity: ItemEntity) {
@@ -78,9 +77,21 @@ class SingleUserListActivity : AppCompatActivity() {
             }
         })
         binding.userListItemsRecyclerview.adapter = adapterUserListItems
-        viewModel.getItemsByListId(listId).observe(this, Observer {
+        viewModel.getItemsByListId(listId).observe(this, Observer { it ->
             adapterUserListItems.setItemsList(it)
             adapterUserListItems.notifyDataSetChanged()
+            var totalSum = 0
+            var remainingSum = 0
+            if (!it.isNullOrEmpty()) {
+                for (item in it) {
+                    totalSum += item.itemPrice
+                    if (!item.itemIsBought) {
+                        remainingSum += item.itemPrice
+                    }
+                }
+            }
+            binding.listSumTextview.text = "Сумма: $totalSum"
+            binding.listRemainingSumTextview.text = "Ещё: $remainingSum"
         })
 
         binding.addNewItemFab.setOnClickListener {
@@ -93,13 +104,12 @@ class SingleUserListActivity : AppCompatActivity() {
             newDialog.show(supportFragmentManager, "addItemDialog")
         }
 
-        viewModel.getSumOfItemsByListId(listId).observe(this, Observer {
-            val itemsSum = it
-            binding.listSumTextview.text = "Сумма: $itemsSum"
-        })
-        viewModel.getRemainingSumOfItemsByListId(listId).observe(this, Observer {
-            val remainingSum = it
-            binding.listRemainingSumTextview.text = "Еще: $remainingSum"
-        })
+        binding.deleteListBtn.setOnClickListener {
+            viewModel.deleteItemsByListId(listId)
+            viewModel.deleteList(listId)
+            val navigateToMainActivity = Intent(this, MainActivity::class.java)
+            startActivity(navigateToMainActivity)
+        }
     }
+
 }

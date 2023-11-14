@@ -3,13 +3,7 @@ package com.example.shoppinglistsapp.data.entity
 import androidx.room.*
 import androidx.room.ForeignKey.Companion.CASCADE
 
-@Entity(tableName = "item", foreignKeys = [
-    ForeignKey(
-        entity = ListEntity::class,
-        parentColumns = arrayOf("list_id"),
-        childColumns = arrayOf("item_list_id"),
-        onDelete = CASCADE)
-])
+@Entity(tableName = "item")
 data class ItemEntity(
     @PrimaryKey(autoGenerate = true)
     var item_id: Long? = null,
@@ -32,7 +26,7 @@ data class ItemEntity(
     @ColumnInfo(name = "item_place_to_buy_id")
     var itemPlaceToBuyId: Long? = null,
 
-    @ColumnInfo(index = true, name = "item_list_id")
+    @ColumnInfo(name = "item_list_id")
     var itemListId: Long,
 
     @ColumnInfo(name = "item_is_bought")

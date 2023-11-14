@@ -24,9 +24,6 @@ interface ItemDao {
     @Query("SELECT * FROM item WHERE item_list_id = :listId")
     fun getItemsByListId(listId: Long): Flow<List<ItemEntity>>
 
-    @Query("SELECT SUM (item_price) FROM item WHERE item_list_id = :listId")
-    fun getSumOfItemsByListId(listId: Long): Flow<Int>
-
-    @Query("SELECT SUM (item_price) FROM item WHERE item_list_id = :listId AND item_is_bought = false")
-    fun getRemainingSumOfItemsByListId(listId: Long): Flow<Int>
+    @Query("DELETE FROM item WHERE item_list_id = :listId")
+    fun deleteItemsByListId(listId: Long)
 }

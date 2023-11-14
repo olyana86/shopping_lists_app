@@ -44,7 +44,9 @@ class MainActivity : AppCompatActivity() {
         binding.addNewListFab.setOnClickListener {
             val newListDialog = AddListDialogFragment(object : AddListDialogClickListener {
                 override fun addList(listEntity: ListEntity) {
-                    navigateToNewList(listEntity, viewModel)
+                    viewModel.addNewList(listEntity)
+                    listEntity.list_id = viewModel.getNewListId()
+                    listItemClicked(listEntity)
                 }
             })
             newListDialog.show(supportFragmentManager, "addNewListDialog")
@@ -110,16 +112,5 @@ class MainActivity : AppCompatActivity() {
         navigateToChosenCategory.putExtra("NAME", categoryName)
         navigateToChosenCategory.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(navigateToChosenCategory)
-    }
-
-    private fun navigateToNewList(listEntity: ListEntity, viewModel: MainActivityViewModel) {
-        val newListTitle = listEntity.listName
-        viewModel.addNewList(listEntity)
-        val newListId = viewModel.getNewListId()
-        val navigateToNewList = Intent(this, SingleUserListActivity::class.java)
-        navigateToNewList.putExtra("ID", newListId)
-        navigateToNewList.putExtra("NAME", newListTitle)
-        navigateToNewList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(navigateToNewList)
     }
 }

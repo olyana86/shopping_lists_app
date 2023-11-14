@@ -1,13 +1,10 @@
 package com.example.shoppinglistsapp.presentation.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.shoppinglistsapp.data.entity.ItemEntity
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewModel() {
@@ -18,26 +15,20 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
         }
     }
 
-    fun deleteList(listEntity: ListEntity) {
+    fun deleteList(listId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteList(listEntity)
+            repository.deleteListById(listId)
+        }
+    }
+
+    fun deleteItemsByListId(listId: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteItemsByListId(listId)
         }
     }
 
     fun getItemsByListId(listId: Long) = liveData {
         repository.getItemsByListId(listId).collect{
-            emit(it)
-        }
-    }
-
-    fun getSumOfItemsByListId(listId: Long) = liveData {
-        repository.getSumOfItemsByListId(listId).collect{
-            emit(it)
-        }
-    }
-
-    fun getRemainingSumOfItemsByListId(listId: Long) = liveData {
-        repository.getRemainingSumOfItemsByListId(listId).collect{
             emit(it)
         }
     }
