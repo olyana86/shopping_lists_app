@@ -9,12 +9,36 @@
     android:padding="8dp"
     tools:context=".presentation.activity.AutoListActivity">
 
+        <TextView
+            android:id="@+id/auto_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Название автосписка"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:paddingVertical="8dp"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/auto_list_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Адрес места покупки"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_below="@id/auto_list_title"
+            android:paddingBottom="8dp"/>
+
     <Button
         android:id="@+id/manage_auto_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Управление списком"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/auto_list_description"
+        android:visibility="gone"
         android:layout_centerHorizontal="true"/>
 
     <FrameLayout
@@ -22,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/manage_auto_list_btn"
+        android:visibility="gone"
         android:layout_centerHorizontal="true">
         <include layout="@layout/reusable_manage_list_chips" />
-
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -38,11 +62,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/auto_list_sum_textview"
         android:clickable="true"
         android:text="Новая покупка"
         android:textSize="16sp"
         android:textStyle="bold"
         app:icon="@android:drawable/ic_input_add" />
+
+        <TextView
+            android:id="@+id/auto_list_sum_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Сумма: 0"
+            android:textColor="@color/black"
+            android:layout_toStartOf="@id/auto_list_remaining_sum_textview"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/auto_list_remaining_sum_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingStart="8dp"
+            android:text="Ещё: 0"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 </RelativeLayout>
 </layout>

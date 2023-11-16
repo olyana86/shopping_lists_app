@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -104,11 +105,15 @@ class SingleUserListActivity : AppCompatActivity() {
             newDialog.show(supportFragmentManager, "addItemDialog")
         }
 
-        binding.deleteListBtn.setOnClickListener {
-            viewModel.deleteItemsByListId(listId)
-            viewModel.deleteList(listId)
-            val navigateToMainActivity = Intent(this, MainActivity::class.java)
-            startActivity(navigateToMainActivity)
+        val listIdString = listId.toString()
+        if (listIdString != "1") {
+            binding.deleteListBtn.isVisible = true
+            binding.deleteListBtn.setOnClickListener {
+                viewModel.deleteItemsByListId(listId)
+                viewModel.deleteList(listId)
+                val navigateToMainActivity = Intent(this, MainActivity::class.java)
+                startActivity(navigateToMainActivity)
+            }
         }
     }
 

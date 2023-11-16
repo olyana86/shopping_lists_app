@@ -26,4 +26,7 @@ interface ItemDao {
 
     @Query("DELETE FROM item WHERE item_list_id = :listId")
     fun deleteItemsByListId(listId: Long)
+
+    @Query("SELECT * FROM item WHERE item_priority_id = :priorityId")
+    fun getPriorityWithItemsById(priorityId: Long): Flow<List<ItemEntity>>
 }

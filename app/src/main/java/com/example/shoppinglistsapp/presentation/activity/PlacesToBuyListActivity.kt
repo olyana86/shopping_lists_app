@@ -77,6 +77,7 @@ class PlacesToBuyListActivity : AppCompatActivity() {
         navigateToChosenPlaceToBuyList.putExtra("ID", placeToBuyId)
         navigateToChosenPlaceToBuyList.putExtra("NAME", placeToBuyName)
         navigateToChosenPlaceToBuyList.putExtra("ADDRESS", placeToBuyAddress)
+        navigateToChosenPlaceToBuyList.putExtra("TYPE", "place")
         navigateToChosenPlaceToBuyList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(navigateToChosenPlaceToBuyList)
     }

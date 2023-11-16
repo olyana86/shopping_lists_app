@@ -16,14 +16,8 @@ class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
 
     var newListId: Long? = null
 
-    fun getItemById(itemId: Long): Flow<ItemEntity> {return db.itemDao().getItemById(itemId)}
-    fun getCategoryById(categoryId: Long): Flow<ItemCategoryEntity> {return db.itemCategoryDao().getCategoryById(categoryId)}
-    fun getPriorityById(priorityId: Long): Flow<ItemPriorityEntity> {return db.itemPriorityDao().getPriorityById(priorityId)}
-    fun getPlaceToBuyById(placeToBuyId: Long): Flow<ItemPlaceToBuyEntity> {return db.itemPlaceToBuyDao().getPlaceToBuyById(placeToBuyId)}
-    fun getListById(listId: Long): Flow<ListEntity> {return db.listDao().getListById(listId)}
-
     fun getItemsByCategoryId(categoryId: Long): Flow<List<ItemEntity>> {return db.itemCategoryDao().getCategoryWithItemsById(categoryId)}
-    fun getItemsByPriorityId(priorityId: Long): Flow<List<ItemEntity>> {return db.itemPriorityDao().getPriorityWithItemsById(priorityId)}
+    fun getItemsByPriorityId(priorityId: Long): Flow<List<ItemEntity>> {return db.itemDao().getPriorityWithItemsById(priorityId)}
     fun getItemsByPlaceToBuyId(placeToBuyId: Long): Flow<List<ItemEntity>> {return db.itemPlaceToBuyDao().getPlaceToBuyWithItemsById(placeToBuyId)}
     fun getItemsByListId(listId: Long): Flow<List<ItemEntity>> {return db.itemDao().getItemsByListId(listId)}
 

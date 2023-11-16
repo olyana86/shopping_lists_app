@@ -88,6 +88,7 @@ class CategoriesListActivity : AppCompatActivity() {
             AutoListActivity::class.java)
         navigateToChosenCategoryList.putExtra("ID", categoryId)
         navigateToChosenCategoryList.putExtra("NAME", categoryName)
+        navigateToChosenCategoryList.putExtra("TYPE", "category")
         navigateToChosenCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(navigateToChosenCategoryList)
     }

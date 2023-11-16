@@ -53,22 +53,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.firstPriorityBtn.setOnClickListener {
+            val firstPriority: Long = 1
             val navigateToFirstPriorityList = Intent(this, AutoListActivity::class.java)
-            navigateToFirstPriorityList.putExtra("ID", 1)
+            navigateToFirstPriorityList.putExtra("ID", firstPriority)
+            navigateToFirstPriorityList.putExtra("NAME", "Приоритет: срочно")
+            navigateToFirstPriorityList.putExtra("TYPE", "priority")
             navigateToFirstPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToFirstPriorityList)
         }
 
         binding.secondPriorityBtn.setOnClickListener {
+            val secondPriority: Long = 2
             val navigateToSecondPriorityList = Intent(this, AutoListActivity::class.java)
-            navigateToSecondPriorityList.putExtra("ID", 2)
+            navigateToSecondPriorityList.putExtra("ID", secondPriority)
+            navigateToSecondPriorityList.putExtra("NAME", "Приоритет: надо")
+            navigateToSecondPriorityList.putExtra("TYPE", "priority")
             navigateToSecondPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToSecondPriorityList)
         }
 
         binding.thirdPriorityBtn.setOnClickListener {
+            val thirdPriority: Long = 3
             val navigateToThirdPriorityList = Intent(this, AutoListActivity::class.java)
-            navigateToThirdPriorityList.putExtra("ID", 3)
+            navigateToThirdPriorityList.putExtra("ID", thirdPriority)
+            navigateToThirdPriorityList.putExtra("NAME", "Приоритет: подождёт")
+            navigateToThirdPriorityList.putExtra("TYPE", "priority")
             navigateToThirdPriorityList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(navigateToThirdPriorityList)
         }
@@ -110,6 +119,7 @@ class MainActivity : AppCompatActivity() {
         val navigateToChosenCategory = Intent(this, AutoListActivity::class.java)
         navigateToChosenCategory.putExtra("ID", categoryId)
         navigateToChosenCategory.putExtra("NAME", categoryName)
+        navigateToChosenCategory.putExtra("TYPE", "category")
         navigateToChosenCategory.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(navigateToChosenCategory)
     }
