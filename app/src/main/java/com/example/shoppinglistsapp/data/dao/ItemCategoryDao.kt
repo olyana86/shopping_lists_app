@@ -22,16 +22,12 @@ interface ItemCategoryDao {
     @Query("SELECT * FROM item_category")
     fun getAllCategories(): Flow<List<ItemCategoryEntity>>
 
-    @Query("SELECT * FROM item_category WHERE is_deletable = false")
-    fun getBasicCategories(): Flow<List<ItemCategoryEntity>>
-
-    @Query("SELECT * FROM item_category WHERE is_deletable = true")
-    fun getEditableCategories(): Flow<List<ItemCategoryEntity>>
+    @Query("SELECT * FROM item_category WHERE is_deletable = :isDeletable")
+    fun getSelectedCategories(isDeletable: Boolean): Flow<List<ItemCategoryEntity>>
 
     @Query ("SELECT * FROM item_category WHERE category_id = :categoryId LIMIT 1")
     fun getCategoryById(categoryId: Long): Flow<ItemCategoryEntity>
 
-    @Transaction
     @Query("SELECT * FROM item WHERE item_category_id = :categoryId")
     fun getCategoryWithItemsById(categoryId: Long): Flow<List<ItemEntity>>
 }

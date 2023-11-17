@@ -23,7 +23,6 @@ interface ItemPlaceToBuyDao {
     @Query ("SELECT * FROM item_place_to_buy WHERE place_to_buy_id = :placeToBuyId LIMIT 1")
     fun getPlaceToBuyById(placeToBuyId: Long): Flow<ItemPlaceToBuyEntity>
 
-    @Transaction
     @Query("SELECT * FROM item WHERE item_place_to_buy_id = :placeToBuyId")
     fun getPlaceToBuyWithItemsById(placeToBuyId: Long): Flow<List<ItemEntity>>
 }

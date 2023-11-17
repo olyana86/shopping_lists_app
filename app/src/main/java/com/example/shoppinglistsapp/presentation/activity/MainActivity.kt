@@ -45,8 +45,7 @@ class MainActivity : AppCompatActivity() {
             val newListDialog = AddListDialogFragment(object : AddListDialogClickListener {
                 override fun addList(listEntity: ListEntity) {
                     viewModel.addNewList(listEntity)
-                    listEntity.list_id = viewModel.getNewListId()
-                    listItemClicked(listEntity)
+                    getNewList(viewModel)
                 }
             })
             newListDialog.show(supportFragmentManager, "addNewListDialog")
@@ -101,10 +100,18 @@ class MainActivity : AppCompatActivity() {
             val navigateToAllPlacesToBuy = Intent(this, PlacesToBuyListActivity::class.java)
             startActivity(navigateToAllPlacesToBuy)
         }
+
+    }
+
+    private fun getNewList(viewModel: MainActivityViewModel) {
+        viewModel.getNewList().observe(this, Observer {
+            val newList: ListEntity = it
+            listItemClicked(newList)
+        })
     }
 
     private fun listItemClicked(listEntity: ListEntity){
-        val listId = listEntity.list_id
+        val listId: Long? = listEntity.list_id
         val listName = listEntity.listName
         val navigateToUserList = Intent(this, SingleUserListActivity::class.java)
         navigateToUserList.putExtra("ID", listId)
@@ -114,7 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun categoriesItemClicked(itemCategoryEntity: ItemCategoryEntity){
-        val categoryId = itemCategoryEntity.category_id
+        val categoryId: Long? = itemCategoryEntity.category_id
         val categoryName = itemCategoryEntity.categoryName
         val navigateToChosenCategory = Intent(this, AutoListActivity::class.java)
         navigateToChosenCategory.putExtra("ID", categoryId)
@@ -123,4 +130,5 @@ class MainActivity : AppCompatActivity() {
         navigateToChosenCategory.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(navigateToChosenCategory)
     }
+
 }

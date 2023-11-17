@@ -45,16 +45,7 @@ class SingleUserListActivity : AppCompatActivity() {
 
         binding.listTitleTextview.text = oldListTitle
 
-        binding.userListTitleEditBtn.setOnClickListener {
-            val editTitleDialog = EditListDialogFragment(object : UpdateListDialogClickListener {
-                override fun updateList(listTitle: String) {
-                    val newList = ListEntity(list_id = listId, listName = listTitle)
-                    viewModel.updateListTitle(newList)
-                    binding.listTitleTextview.text = listTitle
-                }
-            }, oldListTitle)
-            editTitleDialog.show(supportFragmentManager, "editListTitleDialog")
-        }
+
 
         binding.userListItemsRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterUserListItems = UserListItemsRecyclerViewAdapter(object :
@@ -113,6 +104,18 @@ class SingleUserListActivity : AppCompatActivity() {
                 viewModel.deleteList(listId)
                 val navigateToMainActivity = Intent(this, MainActivity::class.java)
                 startActivity(navigateToMainActivity)
+            }
+
+           binding.userListTitleEditBtn.isVisible = true
+           binding.userListTitleEditBtn.setOnClickListener {
+                val editTitleDialog = EditListDialogFragment(object : UpdateListDialogClickListener {
+                    override fun updateList(listTitle: String) {
+                        val newList = ListEntity(list_id = listId, listName = listTitle)
+                        viewModel.updateListTitle(newList)
+                        binding.listTitleTextview.text = listTitle
+                    }
+                }, oldListTitle)
+                editTitleDialog.show(supportFragmentManager, "editListTitleDialog")
             }
         }
     }

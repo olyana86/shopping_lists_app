@@ -10,14 +10,8 @@ import kotlinx.coroutines.launch
 
 class CategoriesListViewModel(private val repository: ShoppingListsRepository) : ViewModel() {
 
-    fun getBasicCategories() = liveData {
-        repository.basicCategories.collect {
-            emit(it)
-        }
-    }
-
-    fun getEditableCategories() = liveData {
-        repository.editableCategories.collect {
+    fun getEditableCategories(isDeletable: Boolean) = liveData {
+        repository.getSelectedCategories(isDeletable).collect {
             emit(it)
         }
     }

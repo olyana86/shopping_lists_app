@@ -41,7 +41,7 @@ class CategoriesListActivity : AppCompatActivity() {
             }
         })
         binding.allCategoriesBasicRecyclerview.adapter = adapterBasicCategories
-        viewModel.getBasicCategories().observe(this, Observer {
+        viewModel.getEditableCategories(false).observe(this, Observer {
             adapterBasicCategories.setBasicCategoriesList(it)
             adapterBasicCategories.notifyDataSetChanged()
         })
@@ -66,7 +66,7 @@ class CategoriesListActivity : AppCompatActivity() {
             }
         })
         binding.allCategoriesRecyclerview.adapter = adapterCategories
-        viewModel.getEditableCategories().observe(this, Observer {
+        viewModel.getEditableCategories(true).observe(this, Observer {
             adapterCategories.setAllCategoriesList(it)
             adapterCategories.notifyDataSetChanged()
         })

@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ListDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertList(list: ListEntity): Long
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertList(list: ListEntity)
 
     @Update
     fun updateList(list: ListEntity)
@@ -21,4 +21,7 @@ interface ListDao {
 
     @Query ("SELECT * FROM list WHERE list_id = :listId LIMIT 1")
     fun getListById(listId: Long): Flow<ListEntity>
+
+    @Query("SELECT * FROM list ORDER BY list_id DESC LIMIT 1")
+    fun getLastList(): Flow<ListEntity>
 }
