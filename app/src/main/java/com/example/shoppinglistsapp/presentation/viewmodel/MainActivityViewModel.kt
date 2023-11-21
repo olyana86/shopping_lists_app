@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
 
 class MainActivityViewModel(private val repository: ShoppingListsRepository) : ViewModel() {
 
@@ -30,13 +29,4 @@ class MainActivityViewModel(private val repository: ShoppingListsRepository) : V
        }
     }
 
-    fun getNewList() = liveData {
-        repository.getLastList().collect{
-            emit(it)
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

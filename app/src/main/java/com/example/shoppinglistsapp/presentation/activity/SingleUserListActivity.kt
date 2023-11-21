@@ -1,8 +1,12 @@
 package com.example.shoppinglistsapp.presentation.activity
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -31,9 +35,7 @@ class SingleUserListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivitySingleUserListBinding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_single_user_list
-        )
+            this, R.layout.activity_single_user_list)
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -44,7 +46,6 @@ class SingleUserListActivity : AppCompatActivity() {
         val listId = intent.getLongExtra("ID", 1)
 
         binding.listTitleTextview.text = oldListTitle
-
 
 
         binding.userListItemsRecyclerview.layoutManager = LinearLayoutManager(this)
@@ -87,13 +88,13 @@ class SingleUserListActivity : AppCompatActivity() {
         })
 
         binding.addNewItemFab.setOnClickListener {
-            val newDialog = AddItemDialogFragment(object : AddItemDialogClickListener {
-                override fun addItem(itemEntity: ItemEntity) {
-                    itemEntity.itemListId = listId
-                    viewModel.addItem(itemEntity)
-                }
-            })
-            newDialog.show(supportFragmentManager, "addItemDialog")
+             val newDialog = AddItemDialogFragment(object : AddItemDialogClickListener {
+                    override fun addItem(itemEntity: ItemEntity) {
+                        itemEntity.itemListId = listId
+                        viewModel.addItem(itemEntity)
+                    }
+                })
+             newDialog.show(supportFragmentManager, "addItemDialog")
         }
 
         val listIdString = listId.toString()
@@ -120,4 +121,10 @@ class SingleUserListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+//        val navigateToMain = Intent(this, MainActivity::class.java)
+//        navigateToMain.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+//        startActivity(navigateToMain)
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.shoppinglistsapp.presentation.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
 import com.example.shoppinglistsapp.data.entity.ItemEntity
 import com.example.shoppinglistsapp.databinding.FragmentEditableItemDialogBinding
@@ -56,11 +58,12 @@ DialogFragment() {
                 itemCategoryId = null, itemPlaceToBuyId = null, itemListId = 1, itemIsBought = false)
                 addItemListener.addItem(addedItem)
             }
-            dismiss()
+            dismissAllowingStateLoss()
         }
 
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

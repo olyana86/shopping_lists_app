@@ -7,8 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.shoppinglistsapp.data.dao.*
 import com.example.shoppinglistsapp.data.entity.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 @Database(
     entities = [

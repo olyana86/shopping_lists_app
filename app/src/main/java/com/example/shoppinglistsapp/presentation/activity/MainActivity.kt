@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
             val newListDialog = AddListDialogFragment(object : AddListDialogClickListener {
                 override fun addList(listEntity: ListEntity) {
                     viewModel.addNewList(listEntity)
-                    getNewList(viewModel)
                 }
             })
             newListDialog.show(supportFragmentManager, "addNewListDialog")
@@ -100,14 +99,6 @@ class MainActivity : AppCompatActivity() {
             val navigateToAllPlacesToBuy = Intent(this, PlacesToBuyListActivity::class.java)
             startActivity(navigateToAllPlacesToBuy)
         }
-
-    }
-
-    private fun getNewList(viewModel: MainActivityViewModel) {
-        viewModel.getNewList().observe(this, Observer {
-            val newList: ListEntity = it
-            listItemClicked(newList)
-        })
     }
 
     private fun listItemClicked(listEntity: ListEntity){
