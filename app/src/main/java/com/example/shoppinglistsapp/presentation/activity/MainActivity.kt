@@ -80,12 +80,49 @@ class MainActivity : AppCompatActivity() {
             startActivity(navigateToThirdPriorityList)
         }
 
+        binding.categoryOneBtn.setOnClickListener {
+            val firstCategory: Long = 1
+            val navigateToFirstCategoryList = Intent(this, AutoListActivity::class.java)
+            navigateToFirstCategoryList.putExtra("ID", firstCategory)
+            navigateToFirstCategoryList.putExtra("NAME", "Еда и напитки")
+            navigateToFirstCategoryList.putExtra("TYPE", "category")
+            navigateToFirstCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(navigateToFirstCategoryList)
+        }
+        binding.categoryTwoBtn.setOnClickListener {
+            val secondCategory: Long = 2
+            val navigateToSecondCategoryList = Intent(this, AutoListActivity::class.java)
+            navigateToSecondCategoryList.putExtra("ID", secondCategory)
+            navigateToSecondCategoryList.putExtra("NAME", "Для дома")
+            navigateToSecondCategoryList.putExtra("TYPE", "category")
+            navigateToSecondCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(navigateToSecondCategoryList)
+        }
+        binding.categoryThreeBtn.setOnClickListener {
+            val thirdCategory: Long = 3
+            val navigateToThirdCategoryList = Intent(this, AutoListActivity::class.java)
+            navigateToThirdCategoryList.putExtra("ID", thirdCategory)
+            navigateToThirdCategoryList.putExtra("NAME", "Одежда и обувь")
+            navigateToThirdCategoryList.putExtra("TYPE", "category")
+            navigateToThirdCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(navigateToThirdCategoryList)
+        }
+        binding.categoryFourBtn.setOnClickListener {
+            val fourthCategory: Long = 4
+            val navigateToFourthCategoryList = Intent(this, AutoListActivity::class.java)
+            navigateToFourthCategoryList.putExtra("ID", fourthCategory)
+            navigateToFourthCategoryList.putExtra("NAME", "Для себя")
+            navigateToFourthCategoryList.putExtra("TYPE", "category")
+            navigateToFourthCategoryList.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(navigateToFourthCategoryList)
+        }
+
         binding.allCategoriesMainRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterCategories = AllCategoriesMainRecyclerViewAdapter { itemCategoryEntity: ItemCategoryEntity ->
             categoriesItemClicked(itemCategoryEntity)
         }
         binding.allCategoriesMainRecyclerview.adapter = adapterCategories
-        viewModel.getAllCategories().observe(this, Observer {
+        viewModel.getEditableCategories(true).observe(this, Observer {
             adapterCategories.setCategoriesList(it)
             adapterCategories.notifyDataSetChanged()
         })

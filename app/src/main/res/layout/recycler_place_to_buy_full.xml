@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:background="#DCDCDC"
     android:paddingVertical="5dp">
 
     <ImageView
@@ -14,7 +15,7 @@
         android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/shopping_icon" />
+        android:src="@drawable/category_home" />
 
     <TextView
         android:id="@+id/full_place_to_buy_title_text"
@@ -48,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@id/full_place_to_buy_delete_btn"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        android:src="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/full_place_to_buy_delete_btn"
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        android:src="@drawable/delete" />
 
 </RelativeLayout>
 </layout>

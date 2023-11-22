@@ -121,10 +121,4 @@ class SingleUserListActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-//        val navigateToMain = Intent(this, MainActivity::class.java)
-//        navigateToMain.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-//        startActivity(navigateToMain)
-    }
 }

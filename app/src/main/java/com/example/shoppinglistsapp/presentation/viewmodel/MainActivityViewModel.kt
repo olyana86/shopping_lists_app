@@ -17,16 +17,15 @@ class MainActivityViewModel(private val repository: ShoppingListsRepository) : V
         }
     }
 
-    fun getAllCategories() = liveData {
-        repository.allCategories.collect {
-            emit(it)
-        }
-    }
-
     fun addNewList(listEntity: ListEntity) {
        viewModelScope.launch(Dispatchers.IO) {
            repository.insertList(listEntity)
        }
     }
 
+    fun getEditableCategories(isDeletable: Boolean) = liveData {
+        repository.getSelectedCategories(isDeletable).collect {
+            emit(it)
+        }
+    }
 }

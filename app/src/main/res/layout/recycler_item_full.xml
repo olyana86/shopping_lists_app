@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:paddingVertical="5dp"
-        android:background="#FFEB3B">
+        android:background="#DCDCDC">
 
         <CheckBox
             android:id="@+id/one_full_item_checkBox"
@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/one_full_item_checkBox"
             android:layout_below="@id/one_full_item_title_text"
+            android:layout_toStartOf="@id/one_full_item_delete_btn"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Цена: 0, 1 шт."
@@ -45,8 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:paddingStart="4dp"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
-
+            android:src="@drawable/delete_red" />
     </RelativeLayout>
 </layout>

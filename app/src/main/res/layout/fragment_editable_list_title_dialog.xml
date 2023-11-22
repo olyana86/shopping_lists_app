@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:context=".presentation.fragment.AddListDialogFragment">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:padding="8dp">
 
             <EditText
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Сохранить"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_below="@id/dialog_list_title_input_textview"
                 android:layout_alignParentEnd="true"  />
         </RelativeLayout>

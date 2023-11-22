@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="#DCDCDC"
         android:paddingVertical="5dp">
 
         <ImageView
@@ -13,7 +14,7 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/shopping_icon" />
+            android:src="@drawable/category_new" />
 
         <TextView
             android:id="@+id/category_title_text"

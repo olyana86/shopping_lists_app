@@ -13,10 +13,8 @@ import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 import com.example.shoppinglistsapp.databinding.ActivityCategoriesListBinding
 import com.example.shoppinglistsapp.presentation.`interface`.AddCategoryDialogClickListener
-import com.example.shoppinglistsapp.presentation.`interface`.BasicCategoryRecyclerClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRecyclerClickListener
 import com.example.shoppinglistsapp.presentation.`interface`.UpdateCategoryDialogClickListener
-import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesBasicRecyclerViewAdapter
 import com.example.shoppinglistsapp.presentation.adapter.AllCategoriesEditableRecyclerViewAdapter
 import com.example.shoppinglistsapp.presentation.fragment.AddCategoryDialogFragment
 import com.example.shoppinglistsapp.presentation.fragment.EditCategoryDialogFragment
@@ -33,18 +31,6 @@ class CategoriesListActivity : AppCompatActivity() {
         val repository = ShoppingListsRepository(database)
         val factory = CategoriesListViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[CategoriesListViewModel::class.java]
-
-        binding.allCategoriesBasicRecyclerview.layoutManager = LinearLayoutManager(this)
-        val adapterBasicCategories = AllCategoriesBasicRecyclerViewAdapter(object : BasicCategoryRecyclerClickListener {
-            override fun onItemClicked(itemCategoryEntity: ItemCategoryEntity) {
-                categoryItemClicked(itemCategoryEntity)
-            }
-        })
-        binding.allCategoriesBasicRecyclerview.adapter = adapterBasicCategories
-        viewModel.getEditableCategories(false).observe(this, Observer {
-            adapterBasicCategories.setBasicCategoriesList(it)
-            adapterBasicCategories.notifyDataSetChanged()
-        })
 
         binding.allCategoriesRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object : EditableCategoryRecyclerClickListener {

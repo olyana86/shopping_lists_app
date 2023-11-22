@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+    android:background="#E7E7E7"
     tools:context=".presentation.activity.SingleUserListActivity">
 
     <TextView
@@ -28,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@id/list_title_textview"
         android:visibility="gone"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        android:src="@drawable/edit" />
 
     <Button
         android:id="@+id/delete_list_btn"

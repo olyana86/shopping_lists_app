@@ -79,25 +79,25 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
                 ),
                     ItemCategoryEntity(
                     category_id = 2,
-                    categoryName = "Одежда и обувь",
+                    categoryName = "Для дома",
                     categoryIsEditable = false,
                     categoryIsDeletable = false
             ),
                 ItemCategoryEntity(
                     category_id = 3,
-                    categoryName = "Для дома",
+                    categoryName = "Одежда и обувь",
                     categoryIsEditable = false,
                     categoryIsDeletable = false
                 ),
                 ItemCategoryEntity(
                     category_id = 4,
-                    categoryName = "Красота и здоровье",
-                    categoryIsEditable = true,
-                    categoryIsDeletable = true
+                    categoryName = "Для себя",
+                    categoryIsEditable = false,
+                    categoryIsDeletable = false
                 ),
                 ItemCategoryEntity(
                     category_id = 5,
-                    categoryName = "Хобби",
+                    categoryName = "Красота и здоровье",
                     categoryIsEditable = true,
                     categoryIsDeletable = true
                 ),

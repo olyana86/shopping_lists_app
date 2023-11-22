@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class ShoppingListsRepository (private val db: ShoppingListsDatabase) {
 
-    val allCategories = db.itemCategoryDao().getAllCategories()
     val allPlacesToBuy = db.itemPlaceToBuyDao().getAllPlacesToBuy()
     val allUserLists = db.listDao().getAllLists()
 

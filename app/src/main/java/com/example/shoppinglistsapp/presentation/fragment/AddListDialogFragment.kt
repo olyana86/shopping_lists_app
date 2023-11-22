@@ -1,6 +1,5 @@
 package com.example.shoppinglistsapp.presentation.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.shoppinglistsapp.data.entity.ListEntity
 import com.example.shoppinglistsapp.databinding.FragmentEditableListTitleDialogBinding
 import com.example.shoppinglistsapp.presentation.`interface`.AddListDialogClickListener
-import com.example.shoppinglistsapp.presentation.activity.SingleUserListActivity
+
 
 class AddListDialogFragment(var addListListener: AddListDialogClickListener) :
     DialogFragment() {

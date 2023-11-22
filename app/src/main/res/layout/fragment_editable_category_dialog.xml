@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Сохранить"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_below="@id/dialog_category_title_input_textview"
         android:layout_alignParentEnd="true"  />
 </RelativeLayout>
