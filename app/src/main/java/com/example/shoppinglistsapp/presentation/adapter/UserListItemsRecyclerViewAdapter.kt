@@ -23,19 +23,29 @@ class UserListItemsRecyclerViewAdapter(var clickListener: ItemsRecyclerClickList
     }
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
+        holder.bind(editableItems[position])
+
+        holder.binding.oneFullItemCheckBox.isChecked = false
+
         val checkedItemsIds = getBoughtItemsIds(editableItems)
-        holder.bind(editableItems[position], checkedItemsIds)
+        val thisItem = editableItems[position]
+
+        val thisItemId = thisItem.item_id.toString()
+        if (checkedItemsIds.contains(thisItemId)) {
+            holder.binding.oneFullItemCheckBox.isChecked = true
+        }
 
         holder.binding.oneFullItemDeleteBtn.setOnClickListener {
             val deletedItem: ItemEntity = editableItems[position]
             clickListener.onDeleteItemClicked(deletedItem)
         }
+
         holder.binding.oneFullItem.setOnClickListener {
             val chosenItem: ItemEntity = editableItems[position]
             clickListener.onItemClicked(chosenItem)
         }
 
-        holder.binding.oneFullItemCheckBox.setOnCheckedChangeListener { compoundButton, b ->
+        holder.binding.oneFullItemCheckBox.setOnClickListener {
             val checkedItem: ItemEntity = editableItems[position]
             clickListener.onCheckItemClicked(checkedItem)
         }
@@ -53,20 +63,14 @@ class UserListItemsRecyclerViewAdapter(var clickListener: ItemsRecyclerClickList
 
     inner class ItemsViewHolder(val binding: RecyclerItemFullBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(itemEntity: ItemEntity, checkedItemsIds: ArrayList<String>) {
+        fun bind(itemEntity: ItemEntity) {
             binding.oneFullItemTitleText.text = itemEntity.itemName
 
             val thisItemPrice = itemEntity.itemPrice
             val thisItemQuantity = itemEntity.itemQuantity
             val thisItemPriceAndQuantity = "Цена: $thisItemPrice,  $thisItemQuantity"
             binding.oneFullItemPriceAndQuantityText.text = thisItemPriceAndQuantity
-
-            val thisItemId = itemEntity.item_id.toString()
-            if (checkedItemsIds.contains(thisItemId)) {
-                binding.oneFullItemCheckBox.isChecked = true
-            }
         }
-
     }
 
     private fun getBoughtItemsIds(listItems: ArrayList<ItemEntity>): ArrayList<String> {
