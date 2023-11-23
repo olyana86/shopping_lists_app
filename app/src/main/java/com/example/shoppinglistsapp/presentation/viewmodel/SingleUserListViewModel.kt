@@ -28,7 +28,7 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
     }
 
     fun getItemsByListId(listId: Long) = liveData {
-        repository.getItemsByListId(listId).collect{
+        repository.getItemsByListId(listId).collect {
             emit(it)
         }
     }
@@ -50,6 +50,7 @@ class SingleUserListViewModel(val repository: ShoppingListsRepository) : ViewMod
             repository.insertItem(itemEntity)
         }
     }
+
     override fun onCleared() {
         super.onCleared()
     }

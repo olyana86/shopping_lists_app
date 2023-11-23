@@ -19,7 +19,7 @@ interface ListDao {
     @Query("SELECT * FROM list")
     fun getAllLists(): Flow<List<ListEntity>>
 
-    @Query ("SELECT * FROM list WHERE list_id = :listId LIMIT 1")
+    @Query("SELECT * FROM list WHERE list_id = :listId LIMIT 1")
     fun getListById(listId: Long): Flow<ListEntity>
 
     @Query("SELECT * FROM list ORDER BY list_id DESC LIMIT 1")

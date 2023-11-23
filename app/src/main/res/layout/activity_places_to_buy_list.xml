@@ -14,7 +14,7 @@
         android:id="@+id/all_places_to_buy_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Все места покупок"
+        android:text="@string/all_places_to_buy_list_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:clickable="true"
         android:focusable="true"
-        android:text="Новое место"
+        android:text="@string/add_new_place_to_buy_fab"
         android:textSize="16sp"
         android:textStyle="bold"
         app:icon="@android:drawable/ic_input_add" />

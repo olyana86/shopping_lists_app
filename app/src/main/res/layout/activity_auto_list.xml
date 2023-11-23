@@ -14,7 +14,7 @@
             android:id="@+id/auto_list_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Название автосписка"
+            android:text="@string/auto_list_title"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -27,7 +27,7 @@
             android:id="@+id/auto_list_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Адрес места покупки"
+            android:text="@string/auto_list_description"
             android:textSize="16sp"
             android:visibility="gone"
             android:layout_below="@id/auto_list_title"
@@ -46,17 +46,18 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@id/auto_list_sum_textview"
         android:clickable="true"
-        android:text="Новая покупка"
+        android:text="@string/add_new_item_auto_list_fab"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:icon="@android:drawable/ic_input_add" />
+        app:icon="@android:drawable/ic_input_add"
+        android:focusable="true" />
 
         <TextView
             android:id="@+id/auto_list_sum_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="Сумма: 0"
+            android:text="@string/auto_list_sum_textview"
             android:textColor="@color/black"
             android:layout_toStartOf="@id/auto_list_remaining_sum_textview"
             android:textSize="18sp"/>
@@ -66,8 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingStart="8dp"
-            android:text="Ещё: 0"
+            android:paddingHorizontal="8dp"
+            android:text="@string/auto_list_remaining_sum_textview"
             android:layout_alignParentEnd="true"
             android:textColor="@color/black"
             android:textSize="18sp"/>

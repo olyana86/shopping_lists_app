@@ -24,8 +24,10 @@ import com.example.shoppinglistsapp.presentation.viewmodel.CategoriesListViewMod
 class CategoriesListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityCategoriesListBinding = DataBindingUtil.setContentView(this,
-            R.layout.activity_categories_list)
+        val binding: ActivityCategoriesListBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_categories_list
+        )
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -33,17 +35,19 @@ class CategoriesListActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, factory)[CategoriesListViewModel::class.java]
 
         binding.allCategoriesRecyclerview.layoutManager = LinearLayoutManager(this)
-        val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object : EditableCategoryRecyclerClickListener {
+        val adapterCategories = AllCategoriesEditableRecyclerViewAdapter(object :
+            EditableCategoryRecyclerClickListener {
             override fun onItemClicked(itemCategoryEntity: ItemCategoryEntity) {
                 categoryItemClicked(itemCategoryEntity)
             }
 
             override fun onEditItemClicked(itemCategoryEntity: ItemCategoryEntity) {
-                val editDialog = EditCategoryDialogFragment(object : UpdateCategoryDialogClickListener {
-                    override fun updateCategory(itemCategoryEntity: ItemCategoryEntity) {
-                        viewModel.updateCategory(itemCategoryEntity)
-                    }
-                }, itemCategoryEntity)
+                val editDialog =
+                    EditCategoryDialogFragment(object : UpdateCategoryDialogClickListener {
+                        override fun updateCategory(itemCategoryEntity: ItemCategoryEntity) {
+                            viewModel.updateCategory(itemCategoryEntity)
+                        }
+                    }, itemCategoryEntity)
                 editDialog.show(supportFragmentManager, "editCategoryDialog")
             }
 
@@ -70,8 +74,10 @@ class CategoriesListActivity : AppCompatActivity() {
     private fun categoryItemClicked(itemCategoryEntity: ItemCategoryEntity) {
         val categoryId = itemCategoryEntity.category_id
         val categoryName = itemCategoryEntity.categoryName
-        val navigateToChosenCategoryList = Intent(this,
-            AutoListActivity::class.java)
+        val navigateToChosenCategoryList = Intent(
+            this,
+            AutoListActivity::class.java
+        )
         navigateToChosenCategoryList.putExtra("ID", categoryId)
         navigateToChosenCategoryList.putExtra("NAME", categoryName)
         navigateToChosenCategoryList.putExtra("TYPE", "category")

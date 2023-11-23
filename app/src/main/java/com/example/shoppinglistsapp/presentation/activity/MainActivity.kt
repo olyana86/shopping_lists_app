@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         }
         binding.allUserListsMainRecyclerview.adapter = adapterUserLists
         viewModel.getUserLists().observe(this, Observer {
-        adapterUserLists.setList(it)
-        adapterUserLists.notifyDataSetChanged()
+            adapterUserLists.setList(it)
+            adapterUserLists.notifyDataSetChanged()
         })
 
         binding.addNewListFab.setOnClickListener {
@@ -118,9 +119,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.allCategoriesMainRecyclerview.layoutManager = LinearLayoutManager(this)
-        val adapterCategories = AllCategoriesMainRecyclerViewAdapter { itemCategoryEntity: ItemCategoryEntity ->
-            categoriesItemClicked(itemCategoryEntity)
-        }
+        val adapterCategories =
+            AllCategoriesMainRecyclerViewAdapter { itemCategoryEntity: ItemCategoryEntity ->
+                categoriesItemClicked(itemCategoryEntity)
+            }
         binding.allCategoriesMainRecyclerview.adapter = adapterCategories
         viewModel.getEditableCategories(true).observe(this, Observer {
             adapterCategories.setCategoriesList(it)
@@ -138,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun listItemClicked(listEntity: ListEntity){
+    private fun listItemClicked(listEntity: ListEntity) {
         val listId: Long? = listEntity.list_id
         val listName = listEntity.listName
         val navigateToUserList = Intent(this, SingleUserListActivity::class.java)
@@ -148,7 +150,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(navigateToUserList)
     }
 
-    private fun categoriesItemClicked(itemCategoryEntity: ItemCategoryEntity){
+    private fun categoriesItemClicked(itemCategoryEntity: ItemCategoryEntity) {
         val categoryId: Long? = itemCategoryEntity.category_id
         val categoryName = itemCategoryEntity.categoryName
         val navigateToChosenCategory = Intent(this, AutoListActivity::class.java)

@@ -25,7 +25,8 @@ import com.example.shoppinglistsapp.presentation.viewmodel.AutoListViewModelFact
 class AutoListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityAutoListBinding = DataBindingUtil.setContentView(this, R.layout.activity_auto_list)
+        val binding: ActivityAutoListBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_auto_list)
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -38,7 +39,7 @@ class AutoListActivity : AppCompatActivity() {
 
         binding.allItemsAutoListRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterAutoListItems = UserListItemsRecyclerViewAdapter(object :
-        ItemsRecyclerClickListener {
+            ItemsRecyclerClickListener {
             override fun onItemClicked(itemEntity: ItemEntity) {
                 val editDialog = EditItemDialogFragment(object : UpdateItemDialogClickListener {
                     override fun updateItem(itemEntity: ItemEntity) {

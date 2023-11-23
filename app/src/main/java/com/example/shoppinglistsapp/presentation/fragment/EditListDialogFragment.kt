@@ -8,17 +8,21 @@ import androidx.fragment.app.DialogFragment
 import com.example.shoppinglistsapp.databinding.FragmentEditableListTitleDialogBinding
 import com.example.shoppinglistsapp.presentation.`interface`.UpdateListDialogClickListener
 
-class EditListDialogFragment(var updateListListener: UpdateListDialogClickListener,
-                             var listTitle: String?) : DialogFragment() {
+class EditListDialogFragment(
+    var updateListListener: UpdateListDialogClickListener,
+    var listTitle: String?
+) : DialogFragment() {
 
     private var _binding: FragmentEditableListTitleDialogBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater,
+    override fun onCreateView(
+        inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEditableListTitleDialogBinding.inflate(
-            inflater, container, false)
+            inflater, container, false
+        )
 
         binding.dialogListTitleInputTextview.setText(listTitle)
 
@@ -28,7 +32,7 @@ class EditListDialogFragment(var updateListListener: UpdateListDialogClickListen
 
         binding.dialogListTitleSaveBtn.setOnClickListener {
             val newListTitle = binding.dialogListTitleInputTextview.text.toString()
-            if(newListTitle != "") {
+            if (newListTitle != "") {
                 updateListListener.updateList(newListTitle)
             }
             dismiss()

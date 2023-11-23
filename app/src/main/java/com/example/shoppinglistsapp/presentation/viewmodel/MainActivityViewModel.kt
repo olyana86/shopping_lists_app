@@ -18,9 +18,9 @@ class MainActivityViewModel(private val repository: ShoppingListsRepository) : V
     }
 
     fun addNewList(listEntity: ListEntity) {
-       viewModelScope.launch(Dispatchers.IO) {
-           repository.insertList(listEntity)
-       }
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertList(listEntity)
+        }
     }
 
     fun getEditableCategories(isDeletable: Boolean) = liveData {

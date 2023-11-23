@@ -10,32 +10,37 @@ import com.example.shoppinglistsapp.databinding.FragmentEditableCategoryDialogBi
 import com.example.shoppinglistsapp.presentation.`interface`.AddCategoryDialogClickListener
 
 class AddCategoryDialogFragment(var addCategoryListener: AddCategoryDialogClickListener) :
-                                        DialogFragment() {
+    DialogFragment() {
 
     private var _binding: FragmentEditableCategoryDialogBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEditableCategoryDialogBinding.inflate(
-            inflater, container, false)
+            inflater, container, false
+        )
 
         binding.dialogCategoryCancelBtn.setOnClickListener {
             dismiss()
         }
         binding.dialogCategorySaveBtn.setOnClickListener {
             val categoryTitle = binding.dialogCategoryTitleInputTextview.text.toString()
-            if(categoryTitle != "") {
-                val newCategory = ItemCategoryEntity(category_id = null,
+            if (categoryTitle != "") {
+                val newCategory = ItemCategoryEntity(
+                    category_id = null,
                     categoryName = categoryTitle, categoryIsEditable = true,
-                    categoryIsDeletable = true)
+                    categoryIsDeletable = true
+                )
                 addCategoryListener.addCategory(newCategory)
             }
             dismiss()
         }
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

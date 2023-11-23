@@ -1,6 +1,5 @@
 package com.example.shoppinglistsapp.presentation.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,13 +10,15 @@ import com.example.shoppinglistsapp.databinding.RecyclerItemFullBinding
 import com.example.shoppinglistsapp.presentation.`interface`.ItemsRecyclerClickListener
 
 class UserListItemsRecyclerViewAdapter(var clickListener: ItemsRecyclerClickListener) :
-RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
+    RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
     var editableItems = ArrayList<ItemEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: RecyclerItemFullBinding = DataBindingUtil.inflate(layoutInflater,
-        R.layout.recycler_item_full, parent, false)
+        val binding: RecyclerItemFullBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.recycler_item_full, parent, false
+        )
         return ItemsViewHolder(binding)
     }
 
@@ -50,25 +51,25 @@ RecyclerView.Adapter<UserListItemsRecyclerViewAdapter.ItemsViewHolder>() {
     }
 
 
-   inner class ItemsViewHolder(val binding: RecyclerItemFullBinding) :
-            RecyclerView.ViewHolder(binding.root) {
-                fun bind(itemEntity: ItemEntity, checkedItemsIds: ArrayList<String>) {
-                    binding.oneFullItemTitleText.text = itemEntity.itemName
+    inner class ItemsViewHolder(val binding: RecyclerItemFullBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(itemEntity: ItemEntity, checkedItemsIds: ArrayList<String>) {
+            binding.oneFullItemTitleText.text = itemEntity.itemName
 
-                    val thisItemPrice = itemEntity.itemPrice
-                    val thisItemQuantity = itemEntity.itemQuantity
-                    val thisItemPriceAndQuantity = "Цена: $thisItemPrice, $thisItemQuantity"
-                    binding.oneFullItemPriceAndQuantityText.text = thisItemPriceAndQuantity
+            val thisItemPrice = itemEntity.itemPrice
+            val thisItemQuantity = itemEntity.itemQuantity
+            val thisItemPriceAndQuantity = "Цена: $thisItemPrice,  $thisItemQuantity"
+            binding.oneFullItemPriceAndQuantityText.text = thisItemPriceAndQuantity
 
-                    val thisItemId = itemEntity.item_id.toString()
-                    if (checkedItemsIds.contains(thisItemId)) {
-                        binding.oneFullItemCheckBox.isChecked = true
-                    }
+            val thisItemId = itemEntity.item_id.toString()
+            if (checkedItemsIds.contains(thisItemId)) {
+                binding.oneFullItemCheckBox.isChecked = true
             }
+        }
 
     }
 
-    fun getBoughtItemsIds(listItems: ArrayList<ItemEntity>): ArrayList<String> {
+    private fun getBoughtItemsIds(listItems: ArrayList<ItemEntity>): ArrayList<String> {
         val boughtItemsIds = ArrayList<String>()
         for (item in listItems) {
             if (item.itemIsBought) {

@@ -3,50 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragment.AddPlaceToBuyDialogFragment">
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        tools:context=".presentation.fragment.AddPlaceToBuyDialogFragment">
 
-        <EditText
-            android:id="@+id/dialog_place_title_input_textview"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:hint="Место покупки"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:singleLine="true" />
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
-        <EditText
-            android:id="@+id/dialog_place_address_input_textview"
-            android:layout_below="@id/dialog_place_title_input_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Адрес места"
-            android:inputType="textMultiLine"
-            android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/dialog_place_title_input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:hint="Место покупки"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
-        <Button
-            android:id="@+id/dialog_place_cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Отмена"
-            android:layout_below="@id/dialog_place_address_input_textview"
-            android:layout_toStartOf="@id/dialog_place_save_btn"/>
+            <EditText
+                android:id="@+id/dialog_place_address_input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_place_title_input_textview"
+                android:hint="Адрес места"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
 
-        <Button
-            android:id="@+id/dialog_place_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Сохранить"
-            android:layout_marginStart="8dp"
-            android:layout_below="@id/dialog_place_address_input_textview"
-            android:layout_alignParentEnd="true"  />
-    </RelativeLayout>
-</FrameLayout>
+            <Button
+                android:id="@+id/dialog_place_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_place_address_input_textview"
+                android:layout_toStartOf="@id/dialog_place_save_btn"
+                android:text="Отмена" />
+
+            <Button
+                android:id="@+id/dialog_place_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_place_address_input_textview"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:text="Сохранить" />
+        </RelativeLayout>
+    </FrameLayout>
 </layout>

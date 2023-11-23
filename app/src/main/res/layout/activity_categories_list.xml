@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:clickable="true"
         android:focusable="true"
-        android:text="Новая категория"
+        android:text="@string/add_new_category_fab"
         android:textSize="16sp"
         android:textStyle="bold"
         app:icon="@android:drawable/ic_input_add" />

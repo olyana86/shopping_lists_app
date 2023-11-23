@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:focusable="auto"
-    tools:context=".presentation.fragment.EditItemDialogFragment">
-
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
+        android:layout_height="wrap_content"
+        android:focusable="auto"
+        tools:context=".presentation.fragment.EditItemDialogFragment">
 
-        <EditText
-            android:id="@+id/dialog_item_title_input_textview"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:hint="Название покупки"
-            android:gravity="center_horizontal"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:singleLine="true" />
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
-        <EditText
-            android:id="@+id/dialog_item_quantity_input_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dialog_item_title_input_textview"
-            android:hint="Количество"
-            android:gravity="center_horizontal"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:singleLine="true" />
+            <EditText
+                android:id="@+id/dialog_item_title_input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:gravity="center_horizontal"
+                android:hint="Название покупки"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
-        <EditText
-            android:id="@+id/dialog_item_price_input_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_below="@id/dialog_item_quantity_input_textview"
-            android:hint="Цена покупки"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:singleLine="true" />
+            <EditText
+                android:id="@+id/dialog_item_quantity_input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_item_title_input_textview"
+                android:gravity="center_horizontal"
+                android:hint="Количество"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/dialog_priority_chips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="8dp"
-            android:layout_below="@id/dialog_item_price_input_textview"
-            app:singleSelection="true">
+            <EditText
+                android:id="@+id/dialog_item_price_input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialog_item_quantity_input_textview"
+                android:gravity="center_horizontal"
+                android:hint="Цена покупки"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/add_item_chip_one"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/dialog_priority_chips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="срочно"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                app:checkedIconVisible="true"/>
+                android:layout_below="@id/dialog_item_price_input_textview"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="8dp"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/add_item_chip_two"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/add_item_chip_one"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="срочно"
+                    app:checkedIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/add_item_chip_two"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="надо"
+                    app:checkedIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/add_item_chip_three"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="подождет"
+                    app:checkedIconVisible="true" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <Button
+                android:id="@+id/dialog_item_cancel_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:text="надо"
-                app:checkedIconVisible="true"/>
+                android:layout_below="@id/dialog_priority_chips"
+                android:layout_toStartOf="@id/dialog_item_save_btn"
+                android:text="Отмена" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/add_item_chip_three"
+            <Button
+                android:id="@+id/dialog_item_save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:text="подождет"
-                app:checkedIconVisible="true"/>
-        </com.google.android.material.chip.ChipGroup>
-
-        <Button
-            android:id="@+id/dialog_item_cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Отмена"
-            android:layout_below="@id/dialog_priority_chips"
-            android:layout_toStartOf="@id/dialog_item_save_btn"/>
-
-        <Button
-            android:id="@+id/dialog_item_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Сохранить"
-            android:layout_below="@id/dialog_priority_chips"
-            android:layout_marginStart="8dp"
-            android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
-</FrameLayout>
+                android:layout_below="@id/dialog_priority_chips"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:text="Сохранить" />
+        </RelativeLayout>
+    </FrameLayout>
 </layout>

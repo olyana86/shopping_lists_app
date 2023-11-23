@@ -11,23 +11,22 @@ import kotlinx.coroutines.launch
 class AutoListViewModel(val repository: ShoppingListsRepository) : ViewModel() {
 
     fun getItemsByCategoryId(categoryId: Long) = liveData {
-        repository.getItemsByCategoryId(categoryId).collect{
+        repository.getItemsByCategoryId(categoryId).collect {
             emit(it)
         }
     }
 
     fun getItemsByPriorityId(priorityId: Long) = liveData {
-        repository.getItemsByPriorityId(priorityId).collect{
+        repository.getItemsByPriorityId(priorityId).collect {
             emit(it)
         }
     }
 
     fun getItemsByPlaceToBuyId(placeToBuyId: Long) = liveData {
-        repository.getItemsByPlaceToBuyId(placeToBuyId).collect{
+        repository.getItemsByPlaceToBuyId(placeToBuyId).collect {
             emit(it)
         }
     }
-
 
     fun deleteItem(itemEntity: ItemEntity) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,6 +45,7 @@ class AutoListViewModel(val repository: ShoppingListsRepository) : ViewModel() {
             repository.insertItem(itemEntity)
         }
     }
+
     override fun onCleared() {
         super.onCleared()
     }

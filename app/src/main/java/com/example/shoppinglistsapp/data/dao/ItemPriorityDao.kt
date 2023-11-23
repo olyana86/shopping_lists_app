@@ -14,7 +14,7 @@ interface ItemPriorityDao {
     @Query("SELECT * FROM item_priority")
     fun getAllPriorities(): Flow<List<ItemPriorityEntity>>
 
-    @Query ("SELECT * FROM item_priority WHERE priority_id = :priorityId LIMIT 1")
+    @Query("SELECT * FROM item_priority WHERE priority_id = :priorityId LIMIT 1")
     fun getPriorityById(priorityId: Long): Flow<ItemPriorityEntity>
 
 }

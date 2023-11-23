@@ -14,7 +14,8 @@ class AllCategoriesMainRecyclerViewAdapter(private val clickListener: (ItemCateg
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesMainViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: RecyclerCategoryBinding = DataBindingUtil.inflate(layoutInflater, R.layout.recycler_category, parent, false)
+        val binding: RecyclerCategoryBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.recycler_category, parent, false)
         return CategoriesMainViewHolder(binding)
     }
 
@@ -32,7 +33,8 @@ class AllCategoriesMainRecyclerViewAdapter(private val clickListener: (ItemCateg
     }
 }
 
-class CategoriesMainViewHolder (val binding: RecyclerCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+class CategoriesMainViewHolder(val binding: RecyclerCategoryBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     fun bind(itemCategoryEntity: ItemCategoryEntity, clickListener: (ItemCategoryEntity) -> Unit) {
         binding.categoryTitleText.text = itemCategoryEntity.categoryName
 

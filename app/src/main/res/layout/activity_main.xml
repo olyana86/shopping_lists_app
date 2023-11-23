@@ -89,7 +89,7 @@
                 android:focusable="true"
                 android:text="Еда"
                 style="?attr/materialButtonOutlinedStyle"
-                app:icon="@drawable/category_food" />
+                app:icon="@drawable/cat_food" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/category_two_btn"
@@ -101,7 +101,7 @@
                 android:focusable="true"
                 android:text="Для дома"
                 style="?attr/materialButtonOutlinedStyle"
-                app:icon="@drawable/category_home" />
+                app:icon="@drawable/cat_for_home" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +121,7 @@
                 android:focusable="true"
                 android:text="Одежда"
                 style="?attr/materialButtonOutlinedStyle"
-                app:icon="@drawable/category_clothes" />
+                app:icon="@drawable/cat_clothes" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/category_four_btn"
@@ -133,7 +133,7 @@
                 android:focusable="true"
                 style="?attr/materialButtonOutlinedStyle"
                 android:text="Для себя"
-                app:icon="@drawable/category_gift" />
+                app:icon="@drawable/cat_for_me" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

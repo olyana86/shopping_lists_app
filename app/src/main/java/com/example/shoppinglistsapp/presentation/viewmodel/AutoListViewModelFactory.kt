@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.shoppinglistsapp.data.repository.ShoppingListsRepository
 
 @Suppress("UNCHECKED_CAST")
-class AutoListViewModelFactory(private val repository: ShoppingListsRepository) : ViewModelProvider.NewInstanceFactory() {
+class AutoListViewModelFactory(private val repository: ShoppingListsRepository) :
+    ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AutoListViewModel(repository) as T
     }

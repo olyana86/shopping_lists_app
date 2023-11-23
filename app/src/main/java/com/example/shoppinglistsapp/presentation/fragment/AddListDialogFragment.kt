@@ -16,11 +16,13 @@ class AddListDialogFragment(var addListListener: AddListDialogClickListener) :
     private var _binding: FragmentEditableListTitleDialogBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEditableListTitleDialogBinding.inflate(
-            inflater, container, false)
+            inflater, container, false
+        )
 
         binding.dialogListTitleCancelBtn.setOnClickListener {
             dismiss()

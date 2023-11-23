@@ -9,15 +9,19 @@ import com.example.shoppinglistsapp.data.entity.ItemPlaceToBuyEntity
 import com.example.shoppinglistsapp.databinding.RecyclerPlaceToBuyFullBinding
 import com.example.shoppinglistsapp.presentation.`interface`.PlacesToBuyRecyclerClickListener
 
-class AllPlacesToBuyEditableRecyclerViewAdapter(var placesToBuyClickListener:
-    PlacesToBuyRecyclerClickListener) : RecyclerView.Adapter<AllPlacesToBuyEditableRecyclerViewAdapter.PlacesToBuyEditableViewHolder>() {
+class AllPlacesToBuyEditableRecyclerViewAdapter(
+    var placesToBuyClickListener:
+    PlacesToBuyRecyclerClickListener
+) : RecyclerView.Adapter<AllPlacesToBuyEditableRecyclerViewAdapter.PlacesToBuyEditableViewHolder>() {
     private val editablePlacesToBuy = ArrayList<ItemPlaceToBuyEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             PlacesToBuyEditableViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: RecyclerPlaceToBuyFullBinding = DataBindingUtil.inflate(layoutInflater,
-        R.layout.recycler_place_to_buy_full, parent, false)
+        val binding: RecyclerPlaceToBuyFullBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.recycler_place_to_buy_full, parent, false
+        )
         return PlacesToBuyEditableViewHolder(binding)
     }
 
@@ -46,7 +50,8 @@ class AllPlacesToBuyEditableRecyclerViewAdapter(var placesToBuyClickListener:
         editablePlacesToBuy.addAll(placesToBuyNames)
     }
 
-    class PlacesToBuyEditableViewHolder(val binding: RecyclerPlaceToBuyFullBinding) : RecyclerView.ViewHolder(binding.root)  {
+    class PlacesToBuyEditableViewHolder(val binding: RecyclerPlaceToBuyFullBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
             binding.fullPlaceToBuyTitleText.text = itemPlaceToBuyEntity.placeToBuyName
             binding.fullPlaceToBuyAddressText.text = itemPlaceToBuyEntity.placeToBuyAddress

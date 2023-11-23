@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Надо купить</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="auto_list_title">Название автосписка</string>
+    <string name="auto_list_description">Адрес места покупки</string>
+    <string name="add_new_item_auto_list_fab">Новая покупка</string>
+    <string name="auto_list_sum_textview">Сумма: 0</string>
+    <string name="auto_list_remaining_sum_textview">Ещё: 0</string>
+    <string name="add_new_category_fab">Новая категория</string>
+    <string name="all_places_to_buy_list_title">Все места покупок</string>
+    <string name="add_new_place_to_buy_fab">Новое место</string>
+    <string name="list_title_textview">Название списка</string>
+    <string name="delete_list_btn">Удалить список</string>
 </resources>

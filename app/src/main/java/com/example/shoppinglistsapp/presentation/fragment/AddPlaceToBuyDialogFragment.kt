@@ -14,29 +14,34 @@ import com.example.shoppinglistsapp.presentation.`interface`.AddPlaceToBuyDialog
 class AddPlaceToBuyDialogFragment(var addPlaceToBuyListener: AddPlaceToBuyDialogClickListener) :
     DialogFragment() {
 
-    private var _binding:FragmentEditablePlaceToBuyDialogBinding? = null
+    private var _binding: FragmentEditablePlaceToBuyDialogBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _binding = FragmentEditablePlaceToBuyDialogBinding.inflate(
-           inflater, container, false)
+        _binding = FragmentEditablePlaceToBuyDialogBinding.inflate(
+            inflater, container, false
+        )
 
-       binding.dialogPlaceCancelBtn.setOnClickListener {
-           dismiss()
-       }
-       binding.dialogPlaceSaveBtn.setOnClickListener {
-           val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
-           if (newPlaceToBuyTitle != "") {
-               val newPlaceToBuyAddress: String = binding.dialogPlaceAddressInputTextview.text.toString()
-               val newPlaceToBuy = ItemPlaceToBuyEntity(place_to_buy_id = null,
-               placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress)
-               addPlaceToBuyListener.addPlaceToBuy(newPlaceToBuy)
-           }
-           dismiss()
-       }
-       return binding.root
+        binding.dialogPlaceCancelBtn.setOnClickListener {
+            dismiss()
+        }
+        binding.dialogPlaceSaveBtn.setOnClickListener {
+            val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
+            if (newPlaceToBuyTitle != "") {
+                val newPlaceToBuyAddress: String =
+                    binding.dialogPlaceAddressInputTextview.text.toString()
+                val newPlaceToBuy = ItemPlaceToBuyEntity(
+                    place_to_buy_id = null,
+                    placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress
+                )
+                addPlaceToBuyListener.addPlaceToBuy(newPlaceToBuy)
+            }
+            dismiss()
+        }
+        return binding.root
     }
 
     override fun onDestroyView() {

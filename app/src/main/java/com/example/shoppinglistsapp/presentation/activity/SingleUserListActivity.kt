@@ -35,7 +35,8 @@ class SingleUserListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivitySingleUserListBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_single_user_list)
+            this, R.layout.activity_single_user_list
+        )
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -88,13 +89,13 @@ class SingleUserListActivity : AppCompatActivity() {
         })
 
         binding.addNewItemFab.setOnClickListener {
-             val newDialog = AddItemDialogFragment(object : AddItemDialogClickListener {
-                    override fun addItem(itemEntity: ItemEntity) {
-                        itemEntity.itemListId = listId
-                        viewModel.addItem(itemEntity)
-                    }
-                })
-             newDialog.show(supportFragmentManager, "addItemDialog")
+            val newDialog = AddItemDialogFragment(object : AddItemDialogClickListener {
+                override fun addItem(itemEntity: ItemEntity) {
+                    itemEntity.itemListId = listId
+                    viewModel.addItem(itemEntity)
+                }
+            })
+            newDialog.show(supportFragmentManager, "addItemDialog")
         }
 
         val listIdString = listId.toString()
@@ -107,15 +108,16 @@ class SingleUserListActivity : AppCompatActivity() {
                 startActivity(navigateToMainActivity)
             }
 
-           binding.userListTitleEditBtn.isVisible = true
-           binding.userListTitleEditBtn.setOnClickListener {
-                val editTitleDialog = EditListDialogFragment(object : UpdateListDialogClickListener {
-                    override fun updateList(listTitle: String) {
-                        val newList = ListEntity(list_id = listId, listName = listTitle)
-                        viewModel.updateListTitle(newList)
-                        binding.listTitleTextview.text = listTitle
-                    }
-                }, oldListTitle)
+            binding.userListTitleEditBtn.isVisible = true
+            binding.userListTitleEditBtn.setOnClickListener {
+                val editTitleDialog =
+                    EditListDialogFragment(object : UpdateListDialogClickListener {
+                        override fun updateList(listTitle: String) {
+                            val newList = ListEntity(list_id = listId, listName = listTitle)
+                            viewModel.updateListTitle(newList)
+                            binding.listTitleTextview.text = listTitle
+                        }
+                    }, oldListTitle)
                 editTitleDialog.show(supportFragmentManager, "editListTitleDialog")
             }
         }

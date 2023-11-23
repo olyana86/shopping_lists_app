@@ -16,7 +16,8 @@ import kotlinx.coroutines.*
         ItemPriorityEntity::class,
         ItemPlaceToBuyEntity::class,
         ListEntity::class
-    ], version = ShoppingListsDatabase.DB_VERSION)
+    ], version = ShoppingListsDatabase.DB_VERSION
+)
 
 abstract class ShoppingListsDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
@@ -32,25 +33,31 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ShoppingListsDatabase? = null
 
-        fun getInstance(context: Context) : ShoppingListsDatabase =
+        fun getInstance(context: Context): ShoppingListsDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: buildDatabase(context)
             }
+
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext,
-            ShoppingListsDatabase::class.java, DB_NAME).addCallback(dbCreateCallback(context)).build()
+            Room.databaseBuilder(
+                context.applicationContext,
+                ShoppingListsDatabase::class.java, DB_NAME
+            ).addCallback(dbCreateCallback(context)).build()
 
         private fun dbCreateCallback(context: Context) =
             object : Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     GlobalScope.launch {
-                        getInstance(context).itemPriorityDao().insertAllPriorities(PrepopulateData.priorities)
-                        getInstance(context).itemCategoryDao().insertAllCategories(PrepopulateData.categories)
+                        getInstance(context).itemPriorityDao()
+                            .insertAllPriorities(PrepopulateData.priorities)
+                        getInstance(context).itemCategoryDao()
+                            .insertAllCategories(PrepopulateData.categories)
                         getInstance(context).listDao().insertList(PrepopulateData.commonList)
                     }
                 }
             }
+
         object PrepopulateData {
             val commonList = ListEntity(
                 list_id = 1,
@@ -77,12 +84,12 @@ abstract class ShoppingListsDatabase : RoomDatabase() {
                     categoryIsEditable = false,
                     categoryIsDeletable = false
                 ),
-                    ItemCategoryEntity(
+                ItemCategoryEntity(
                     category_id = 2,
                     categoryName = "Для дома",
                     categoryIsEditable = false,
                     categoryIsDeletable = false
-            ),
+                ),
                 ItemCategoryEntity(
                     category_id = 3,
                     categoryName = "Одежда и обувь",

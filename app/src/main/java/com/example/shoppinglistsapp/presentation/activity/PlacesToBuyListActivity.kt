@@ -26,7 +26,8 @@ class PlacesToBuyListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityPlacesToBuyListBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_places_to_buy_list)
+            this, R.layout.activity_places_to_buy_list
+        )
 
         val database = ShoppingListsDatabase.getInstance(this)
         val repository = ShoppingListsRepository(database)
@@ -35,24 +36,25 @@ class PlacesToBuyListActivity : AppCompatActivity() {
 
         binding.allPlacesToBuyRecyclerview.layoutManager = LinearLayoutManager(this)
         val adapterPlacesToBuy = AllPlacesToBuyEditableRecyclerViewAdapter(object :
-                PlacesToBuyRecyclerClickListener {
-                override fun onPlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
-                    placeToBuyItemClicked(itemPlaceToBuyEntity)
-                }
+            PlacesToBuyRecyclerClickListener {
+            override fun onPlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
+                placeToBuyItemClicked(itemPlaceToBuyEntity)
+            }
 
-                override fun onEditPlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
-                    val editDialog = EditPlaceToBuyDialogFragment(object : UpdatePlaceToBuyDialogClickListener {
+            override fun onEditPlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
+                val editDialog =
+                    EditPlaceToBuyDialogFragment(object : UpdatePlaceToBuyDialogClickListener {
                         override fun updatePlaceToBuy(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
                             viewModel.updatePlaceToBuy(itemPlaceToBuyEntity)
                         }
                     }, itemPlaceToBuyEntity)
-                    editDialog.show(supportFragmentManager, "editPlaceToBuyDialog")
-                }
+                editDialog.show(supportFragmentManager, "editPlaceToBuyDialog")
+            }
 
-                override fun onDeletePlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
-                    viewModel.deletePlaceToBuy(itemPlaceToBuyEntity)
-                }
-            })
+            override fun onDeletePlaceToBuyClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
+                viewModel.deletePlaceToBuy(itemPlaceToBuyEntity)
+            }
+        })
         binding.allPlacesToBuyRecyclerview.adapter = adapterPlacesToBuy
         viewModel.getPlacesToBuy().observe(this, Observer {
             adapterPlacesToBuy.setAllPlacesToBuyList(it)
@@ -68,12 +70,15 @@ class PlacesToBuyListActivity : AppCompatActivity() {
             newDialog.show(supportFragmentManager, "addPlaceToBuyDialog")
         }
     }
+
     fun placeToBuyItemClicked(itemPlaceToBuyEntity: ItemPlaceToBuyEntity) {
         val placeToBuyId = itemPlaceToBuyEntity.place_to_buy_id
         val placeToBuyName = itemPlaceToBuyEntity.placeToBuyName
         val placeToBuyAddress = itemPlaceToBuyEntity.placeToBuyAddress
-        val navigateToChosenPlaceToBuyList = Intent(this,
-        AutoListActivity::class.java)
+        val navigateToChosenPlaceToBuyList = Intent(
+            this,
+            AutoListActivity::class.java
+        )
         navigateToChosenPlaceToBuyList.putExtra("ID", placeToBuyId)
         navigateToChosenPlaceToBuyList.putExtra("NAME", placeToBuyName)
         navigateToChosenPlaceToBuyList.putExtra("ADDRESS", placeToBuyAddress)

@@ -11,20 +11,24 @@ import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.databinding.FragmentEditableCategoryDialogBinding
 import com.example.shoppinglistsapp.presentation.`interface`.UpdateCategoryDialogClickListener
 
-class EditCategoryDialogFragment(var updateCategoryListener: UpdateCategoryDialogClickListener,
-itemCategoryEntity: ItemCategoryEntity) :
-        DialogFragment() {
+class EditCategoryDialogFragment(
+    var updateCategoryListener: UpdateCategoryDialogClickListener,
+    itemCategoryEntity: ItemCategoryEntity
+) :
+    DialogFragment() {
 
     private var _binding: FragmentEditableCategoryDialogBinding? = null
     private val binding get() = _binding!!
     private val oldCategoryTitle = itemCategoryEntity.categoryName
     private val categoryId = itemCategoryEntity.category_id
 
-    override fun onCreateView(inflater: LayoutInflater,
+    override fun onCreateView(
+        inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEditableCategoryDialogBinding.inflate(
-            inflater, container, false)
+            inflater, container, false
+        )
 
         binding.dialogCategoryTitleInputTextview.setText(oldCategoryTitle)
 
@@ -34,15 +38,20 @@ itemCategoryEntity: ItemCategoryEntity) :
 
         binding.dialogCategorySaveBtn.setOnClickListener {
             val categoryTitle = binding.dialogCategoryTitleInputTextview.text.toString()
-            if(categoryTitle != "") {
-                val editedCategory = ItemCategoryEntity(category_id = categoryId,
-                categoryName = categoryTitle, categoryIsEditable = true, categoryIsDeletable = true)
+            if (categoryTitle != "") {
+                val editedCategory = ItemCategoryEntity(
+                    category_id = categoryId,
+                    categoryName = categoryTitle,
+                    categoryIsEditable = true,
+                    categoryIsDeletable = true
+                )
                 updateCategoryListener.updateCategory(editedCategory)
             }
             dismiss()
         }
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

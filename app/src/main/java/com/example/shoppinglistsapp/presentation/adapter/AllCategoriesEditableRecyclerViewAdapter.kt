@@ -1,13 +1,10 @@
 package com.example.shoppinglistsapp.presentation.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistsapp.R
-import com.example.shoppinglistsapp.data.database.ShoppingListsDatabase.Companion.PrepopulateData.categories
 import com.example.shoppinglistsapp.data.entity.ItemCategoryEntity
 import com.example.shoppinglistsapp.databinding.RecyclerCategoryFullBinding
 import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRecyclerClickListener
@@ -15,7 +12,7 @@ import com.example.shoppinglistsapp.presentation.`interface`.EditableCategoryRec
 
 class AllCategoriesEditableRecyclerViewAdapter(var categoriesRecyclerClickListener: EditableCategoryRecyclerClickListener) :
     RecyclerView.Adapter<AllCategoriesEditableRecyclerViewAdapter.CategoriesEditableViewHolder>() {
-    val editableCategories = ArrayList<ItemCategoryEntity>()
+    private val editableCategories = ArrayList<ItemCategoryEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             CategoriesEditableViewHolder {

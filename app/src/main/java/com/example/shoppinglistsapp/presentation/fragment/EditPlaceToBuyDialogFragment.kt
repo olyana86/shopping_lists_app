@@ -11,8 +11,10 @@ import com.example.shoppinglistsapp.data.entity.ItemPlaceToBuyEntity
 import com.example.shoppinglistsapp.databinding.FragmentEditablePlaceToBuyDialogBinding
 import com.example.shoppinglistsapp.presentation.`interface`.UpdatePlaceToBuyDialogClickListener
 
-class EditPlaceToBuyDialogFragment(var updatePlaceToBuyListener: UpdatePlaceToBuyDialogClickListener,
-itemPlaceToBuyEntity: ItemPlaceToBuyEntity) : DialogFragment() {
+class EditPlaceToBuyDialogFragment(
+    var updatePlaceToBuyListener: UpdatePlaceToBuyDialogClickListener,
+    itemPlaceToBuyEntity: ItemPlaceToBuyEntity
+) : DialogFragment() {
 
     private var _binding: FragmentEditablePlaceToBuyDialogBinding? = null
     private val binding get() = _binding!!
@@ -20,33 +22,39 @@ itemPlaceToBuyEntity: ItemPlaceToBuyEntity) : DialogFragment() {
     private val oldPlaceToBuyAddress: String? = itemPlaceToBuyEntity.placeToBuyAddress
     private val placeToBuyId = itemPlaceToBuyEntity.place_to_buy_id
 
-        override fun onCreateView(inflater: LayoutInflater,
+    override fun onCreateView(
+        inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-       _binding = FragmentEditablePlaceToBuyDialogBinding.inflate(
-           inflater, container,false)
+        _binding = FragmentEditablePlaceToBuyDialogBinding.inflate(
+            inflater, container, false
+        )
 
-       binding.dialogPlaceTitleInputTextview.setText(oldPlaceToBuyTitle)
-       if (oldPlaceToBuyAddress != null) {
-           binding.dialogPlaceAddressInputTextview.setText(oldPlaceToBuyAddress)
-       }
+        binding.dialogPlaceTitleInputTextview.setText(oldPlaceToBuyTitle)
+        if (oldPlaceToBuyAddress != null) {
+            binding.dialogPlaceAddressInputTextview.setText(oldPlaceToBuyAddress)
+        }
 
-       binding.dialogPlaceCancelBtn.setOnClickListener {
-           dismiss()
-       }
+        binding.dialogPlaceCancelBtn.setOnClickListener {
+            dismiss()
+        }
 
-       binding.dialogPlaceSaveBtn.setOnClickListener {
-           val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
-           if (newPlaceToBuyTitle != "") {
-               var newPlaceToBuyAddress: String? = binding.dialogPlaceAddressInputTextview.text.toString()
-               val editedPlaceToBuy = ItemPlaceToBuyEntity(place_to_buy_id = placeToBuyId,
-               placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress)
-               updatePlaceToBuyListener.updatePlaceToBuy(editedPlaceToBuy)
-           }
-           dismiss()
-       }
-       return binding.root
+        binding.dialogPlaceSaveBtn.setOnClickListener {
+            val newPlaceToBuyTitle = binding.dialogPlaceTitleInputTextview.text.toString()
+            if (newPlaceToBuyTitle != "") {
+                var newPlaceToBuyAddress: String? =
+                    binding.dialogPlaceAddressInputTextview.text.toString()
+                val editedPlaceToBuy = ItemPlaceToBuyEntity(
+                    place_to_buy_id = placeToBuyId,
+                    placeToBuyName = newPlaceToBuyTitle, placeToBuyAddress = newPlaceToBuyAddress
+                )
+                updatePlaceToBuyListener.updatePlaceToBuy(editedPlaceToBuy)
+            }
+            dismiss()
+        }
+        return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
