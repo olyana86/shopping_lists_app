@@ -10,3 +10,7 @@
 
 Код: Olga Chernyshenko
 Дизайн: Daria Efimkina
+
+![app_main_page](https://github.com/user-attachments/assets/dc5be604-32f6-4f60-88e3-134dfb3eb521) ![app_user_list](https://github.com/user-attachments/assets/3de06828-cda7-4b3a-8e96-76b03c73ed9d)
+
+
